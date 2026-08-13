@@ -59,3 +59,9 @@ xelatex -interaction=nonstopmode kit_sobrevivencia.tex   # 2ª rodada, acerta su
 ```
 
 Os PDFs compilados já estão versionados neste repositório para consulta direta, sem necessidade de compilar localmente.
+
+## Declaração de uso de IA
+
+Coerente com o que o próprio [guia de bolso](handout/kit_sobrevivencia.tex) recomenda ("Sua declaração de uso, pronta"), registramos aqui o uso de IA na preparação *deste repositório* (não do conteúdo pedagógico em si, de autoria integral do autor):
+
+> Este repositório foi organizado com apoio do Claude (Anthropic), via Claude Code, em agosto de 2026, sob supervisão direta do autor. Uso que apoiou tarefas operacionais: instalação e configuração do ambiente de compilação LaTeX (MiKTeX, fonte Poppins) e do GitHub CLI; compilação e verificação de que os documentos `.tex` geram PDF sem erros; reestruturação dos arquivos em `slides/` e `handout/`; redação deste README; criação do repositório e push inicial no GitHub. O conteúdo intelectual dos slides e do guia de bolso não foi gerado por IA. Todas as saídas foram revisadas e aprovadas pelo autor, que se responsabiliza integralmente pelo conteúdo final.
