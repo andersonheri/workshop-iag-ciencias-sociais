@@ -1,0 +1,1606 @@
+% =====================================================================
+%  MINI CURSO DO CEM — Introdução à IA Generativa nas Ciências Sociais
+%  Formato: 2 dias (8h00–12h30) · introdutório · independente de plataforma
+% =====================================================================
+\documentclass[11pt,aspectratio=169,t]{beamer}
+% --- Codificação e idioma -----------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazilian]{babel}
+\usepackage{lmodern}
+% --- Tema visual --------------------------------------------------------------
+\usetheme{Madrid}
+\usecolortheme{default}
+\useinnertheme{rectangles}
+\useoutertheme{miniframes}
+\definecolor{azulUNI}{RGB}{31,78,121}
+\definecolor{azulUNIclaro}{RGB}{68,114,150}
+\definecolor{laranjaDestaque}{RGB}{200,90,30}
+\definecolor{verdeCodigo}{RGB}{0,110,80}
+\definecolor{cinzaCodigo}{RGB}{245,245,245}
+\definecolor{cinzaSaida}{RGB}{237,240,243}
+\definecolor{cinzaescuro}{RGB}{58,58,58}
+\setbeamercolor{structure}{fg=azulUNI}
+\setbeamercolor{frametitle}{bg=azulUNI,fg=white}
+\setbeamercolor{title}{bg=azulUNI,fg=white}
+\setbeamercolor{section in head/foot}{bg=azulUNIclaro,fg=white}
+\setbeamercolor{subsection in head/foot}{bg=azulUNI,fg=white}
+\setbeamercolor{author in head/foot}{bg=azulUNI,fg=white}
+\setbeamercolor{title in head/foot}{bg=azulUNIclaro,fg=white}
+\setbeamercolor{date in head/foot}{bg=azulUNI,fg=white}
+\setbeamercolor{block title}{bg=azulUNI,fg=white}
+\setbeamercolor{block body}{bg=cinzaSaida,fg=cinzaescuro}
+\setbeamercolor{block title alerted}{bg=laranjaDestaque,fg=white}
+\setbeamercolor{block body alerted}{bg=cinzaSaida,fg=cinzaescuro}
+\setbeamercolor{block title example}{bg=verdeCodigo,fg=white}
+\setbeamercolor{block body example}{bg=cinzaSaida,fg=cinzaescuro}
+\setbeamercolor{alerted text}{fg=laranjaDestaque}
+\setbeamersize{text margin left=0.55cm, text margin right=0.55cm}
+% --- Pacotes auxiliares -------------------------------------------------------
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,arrows.meta,positioning,calc,fit,backgrounds}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{multicol}
+\hypersetup{colorlinks=true,linkcolor=azulUNI,citecolor=laranjaDestaque,urlcolor=azulUNI}
+% ---------- Listings (para prompts) ----------
+\lstset{
+  basicstyle=\ttfamily\scriptsize,
+  backgroundcolor=\color{cinzaCodigo},
+  frame=single,
+  rulecolor=\color{cinzaescuro},
+  breaklines=true,
+  breakatwhitespace=true,
+  columns=fullflexible,
+  showstringspaces=false,
+  xleftmargin=4pt,
+  xrightmargin=4pt,
+  aboveskip=4pt,
+  belowskip=4pt,
+  inputencoding=utf8,
+  extendedchars=true,
+  literate=
+    {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+    {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+    {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+    {À}{{\`A}}1 {È}{{\`E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+    {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+    {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+    {ã}{{\~a}}1 {õ}{{\~o}}1 {Ã}{{\~A}}1 {Õ}{{\~O}}1
+    {ç}{{\c{c}}}1 {Ç}{{\c{C}}}1
+    {ü}{{\"u}}1 {Ü}{{\"U}}1
+}
+% ---------- Slide de transição entre blocos ----------
+\newcommand{\transicao}[2]{%
+  \begin{frame}[plain]
+    \centering
+    \vspace*{2.2cm}
+    {\large\color{cinzaescuro} #1}\\[0.8cm]
+    {\Large\color{azulUNI}\textbf{#2}}
+  \end{frame}}
+% ---------- Slide de abertura de dia ----------
+\newcommand{\aberturadia}[3]{%
+  \begin{frame}[plain]
+    \centering
+    \vspace*{1.6cm}
+    {\Huge\color{azulUNI}\textbf{#1}}\\[0.6cm]
+    {\large\color{cinzaescuro} #2}\\[1.2cm]
+    {\normalsize\color{laranjaDestaque}\textbf{#3}}
+  \end{frame}}
+% =====================================================================
+%  METADADOS
+% =====================================================================
+\title[Introdução à IAG — Mini curso CEM]{Introdução à Inteligência Artificial Generativa\\
+\large nas Ciências Sociais}
+\subtitle{Epistemologia, Pesquisa, Ensino e Escrita com IA \\ \small Mini curso do CEM · 2 dias · nível introdutório}
+\author[Anderson Henrique]{\textbf{Anderson Henrique}\\
+\small CEM/USP $\bullet$ INCT QualiGov\\
+\small Pesquisador Convidado IPEA\\
+\small Doutor em Ciência Política pela UFPE}
+\institute{}
+\date{2026}
+% =====================================================================
+%  DOCUMENTO
+% =====================================================================
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+\begin{frame}{Como este mini curso funciona}
+  \begin{block}{Formato}
+    Dois dias, 8h00--12h30 $\bullet$ 25 participantes $\bullet$ sala comum, cada um com seu laptop.
+  \end{block}
+  \pause
+  \begin{alertblock}{Nível introdutório}
+    Feito para quem \textbf{domina pouco ou nada} da ferramenta. Não há pergunta boba. Ninguém precisa saber programar.
+  \end{alertblock}
+  \pause
+  \begin{exampleblock}{Independente de plataforma}
+    Tudo funciona em \textbf{qualquer IA generativa}, como ChatGPT, Gemini ou Claude, entre outras. \textit{Recomendamos o Claude}, mas use a que você já tem.
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{O caminho dos dois dias}
+  \footnotesize
+  \begin{columns}[t]
+    \column{0.5\textwidth}
+    \textbf{\color{azulUNI}Dia 1. Entender e decidir}
+    \begin{itemize}
+      \item M0. Abertura e diagnóstico
+      \item M1. O que é IA generativa
+      \item M2. Epistemologia da IA generativa
+      \item M3. Sete problemas documentados
+      \item M4. Ética, integridade e regulação \\ \scriptsize (com debate de casos)
+    \end{itemize}
+    \column{0.5\textwidth}
+    \textbf{\color{azulUNI}Dia 2. Praticar e aplicar}
+    \begin{itemize}
+      \item M5. Escrevendo bons prompts
+      \item M6. IA no ensino: aulas e apresentações
+      \item M7. IA na pesquisa: ferramentas e modelos
+      \item M8. IA na escrita acadêmica
+      \item M9. Desdobramentos contemporâneos: agentes, \textit{skills} e código
+      \item M10. Síntese e encerramento
+    \end{itemize}
+  \end{columns}
+  \vfill
+  \begin{block}{}
+    \centering O Dia 1 responde \textit{``o que é isso e o que posso fazer?''}. O Dia 2 responde \textit{``como faço?''}.
+  \end{block}
+\end{frame}
+
+% =====================================================================
+\section{Dia 1}
+\aberturadia{DIA 1}{Entender e decidir}{8h00 -- 12h30}
+% =====================================================================
+% ---------------- M0 ----------------
+\subsection{M0. Abertura e diagnóstico}
+\transicao{Módulo 0}{Abertura e diagnóstico}
+\begin{frame}{Antes de tudo: quem está na sala?}
+  \begin{block}{Diagnóstico rápido...}
+    \begin{enumerate}
+      \item Quem \textbf{nunca} usou nenhuma IA generativa?
+      \item Quem já usou, mas \textbf{sem saber direito} o que estava fazendo?
+      \item Quem usa \textbf{com alguma frequência} no trabalho?
+    \end{enumerate}
+  \end{block}
+  \pause
+  \vfill
+  \begin{exampleblock}{}
+    \centering Este curso foi desenhado para os grupos \textbf{1 e 2}. Se você está no 3, vai ganhar \textbf{o critério} (essa parte quase ninguém tem, viu?)
+  \end{exampleblock}
+\end{frame}
+\begin{frame}{Primeiro contato, todos juntos}
+  \begin{block}{Abra a IA que você tiver e envie esse prompt}
+    \centering
+    \textit{``Explique, em um parágrafo, para um calouro de Ciências Sociais, o que é o conceito de capacidade estatal.''}
+  \end{block}
+  \pause
+  \vfill
+  \begin{itemize}
+    \item Não importa a resposta.
+    \item Guarde o resultado. Vamos \textbf{dissecá-lo} daqui a pouco.
+    \item \alert{Alguém recebeu algo que parecia bom demais? Ou que citou algo que você não sabe se existe?}
+  \end{itemize}
+\end{frame}
+% ---------------- M1 ----------------
+\subsection{M1. O que é IA generativa}
+\transicao{Módulo 1}{O que é IA generativa?}
+\begin{frame}{Como funciona, previsão e não conhecimento}
+  \centering
+  \begin{tikzpicture}[node distance=0.5cm and 0.9cm]
+    \tikzstyle{caixa}=[rectangle, rounded corners, draw=azulUNI, very thick,
+                       fill=cinzaSaida, text width=2.7cm, align=center, minimum height=1.3cm]
+    \tikzstyle{saida}=[rectangle, rounded corners, draw=verdeCodigo, very thick,
+                       fill=cinzaSaida, text width=2.7cm, align=center, minimum height=1.3cm]
+    \tikzstyle{seta}=[-{Latex[length=2.5mm]}, very thick, azulUNI]
+    \node[caixa] (entrada) {\textbf{Entrada}\\\scriptsize ``A capital de Pernambuco é''};
+    \node[caixa, right=of entrada] (tokens) {\textbf{Tokenização}\\\scriptsize o texto vira sequência numérica};
+    \node[caixa, right=of tokens] (modelo) {\textbf{Modelo}\\\scriptsize calcula a probabilidade do próximo token};
+    \node[saida, right=of modelo] (saida) {\textbf{Saída}\\\scriptsize ``Recife'' (p $\approx$ 0,97)};
+    \draw[seta] (entrada) -- (tokens);
+    \draw[seta] (tokens) -- (modelo);
+    \draw[seta] (modelo) -- (saida);
+  \end{tikzpicture}
+  \pause
+  \vfill
+  \begin{alertblock}{A ideia mais importante do dia}
+    O modelo \textbf{não consulta fatos}, mas a continuação mais provável. Quando a continuação mais provável é falsa, ele a gera \textbf{com a mesma confiança}.
+  \end{alertblock}
+\end{frame}
+\begin{frame}{Uma analogia}
+  \begin{block}{}
+    O corretor automático do seu celular sugere a próxima palavra a partir do que você mais digitou antes. Uma IA generativa faz a mesma aposta, só que em escala industrial, treinada em bilhões de páginas, e a aposta vira um parágrafo inteiro em vez de uma palavra.
+  \end{block}
+  \pause
+  \vfill
+  \begin{itemize}
+    \item Ela não ``sabe'' que Recife é a capital de Pernambuco;
+    \item Ela calculou que, depois daquelas palavras, ``Recife'' é o que quase sempre vem.
+    \pause
+    \item \alert{Por isso ela erra com confiança. Não existe, do lado de lá, alguém verificando.}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Voltando ao seu primeiro prompt}
+  \small
+  Pegue a resposta que você guardou no Módulo 0, sobre capacidade estatal.
+  \begin{itemize}
+    \item Ela tinha a estrutura de algo \textbf{correto}, ou você de fato conferiu cada afirmação?
+    \item Havia algum dado, autor ou exemplo que parecia \textbf{bom demais} ou que você não sabe se existe?
+  \end{itemize}
+  \pause
+  \vfill
+  \begin{alertblock}{}
+    \centering Se pareceu ótimo à primeira vista, foi o mecanismo funcionando exatamente como descrito. Bom texto não é o mesmo que texto correto.
+  \end{alertblock}
+\end{frame}
+\begin{frame}{Vocabulários importantes}
+  \small
+  \begin{columns}[t]
+    \column{0.5\textwidth}
+    \begin{description}
+      \item[Token] o pedacinho em que o texto é fatiado. Custo e limites se medem nele.
+      \item[Prompt] o comando que você escreve. \textbf{É a habilidade central};
+      \item[Contexto] tudo que a IA ``enxerga'' naquela conversa. Fora dali, ela não sabe.
+      \item[Modelo] a versão específica da IA (GPT, Claude, Gemini\ldots).
+    \end{description}
+    \column{0.5\textwidth}
+    \begin{description}
+      \item[Papel/persona] pedir que ela ``aja como'' alguém. Muda o tom, mas \textbf{não} cria conhecimento.
+      \item[Temperatura] quão ``criativa'' ou previsível é a resposta.
+      \item[Alucinação] informação falsa com cara de verdadeira. \alert{Não é defeito, é o mecanismo.}
+    \end{description}
+  \end{columns}
+\end{frame}
+\begin{frame}{As principais ferramentas hoje}
+  \scriptsize
+  \begin{tabular}{p{2.0cm} p{2.0cm} p{3.6cm} p{3.6cm}}
+    \toprule
+    \textbf{Ferramenta} & \textbf{Quem faz} & \textbf{Costuma ir bem em} & \textbf{Observação} \\
+    \midrule
+    \textbf{Claude} & Anthropic (EUA) & Textos longos, escrita cuidadosa, instruções detalhadas & \textit{Recomendação deste curso} \\
+    \addlinespace
+    \textbf{ChatGPT} & OpenAI (EUA) & Uso geral, ecossistema amplo & O mais difundido \\
+    \addlinespace
+    \textbf{Gemini} & Google (EUA) & Integração com o ecossistema Google & Bom acesso a documentos \\
+    \addlinespace
+    \textbf{Sabiá-4} & Maritaca AI (Brasil) & Português brasileiro, inclusive jurídico & Modelo nacional (jan. 2026) \\
+    \bottomrule
+  \end{tabular}
+  \pause
+  \vspace{0.2cm}
+  \begin{exampleblock}{}
+    \centering \textbf{Tudo neste curso funciona em qualquer uma delas.} Use a que você já tem e não troque por minha causa.
+  \end{exampleblock}
+\end{frame}
+\begin{frame}{Por que ela inventa referências?}
+  \begin{alertblock}{A mecânica}
+    A IA prevê \textbf{como se parece} uma referência sobre o tema (autor plausível, periódico real, título convincente, entre outros), sem buscar nada em base alguma.
+  \end{alertblock}
+  \pause
+  \vfill
+  \begin{itemize}
+    \item Um estudo registrou referências inventadas em \textbf{69\%} das consultas (Alkaissi \& McFarlane, 2023);
+    \item Elas parecem perfeitas: Formato certo, autores que existem e revistas que existem. \textbf{Só o artigo é que não existe;}
+    \pause
+    \item \alert{Regra de ouro nº 1}: toda referência sugerida por IA se verifica na fonte antes de usar.
+  \end{itemize}
+\end{frame}
+\begin{frame}{Cace uma alucinação (Hands-on 1)}
+  \begin{exampleblock}{Na sua IA, peça:}
+    \textit{``Liste 10 artigos acadêmicos, com referência completa, sobre [um tema específico da sua pesquisa]. Priorize trabalhos brasileiros dos últimos 5 anos.''}
+  \end{exampleblock}
+  \vfill
+  \begin{enumerate}
+    \item Escolha 2 referências da lista;
+    \item Procure cada uma no Google Scholar ou no Portal CAPES;
+    \item \textbf{Quantas existem de verdade?}
+  \end{enumerate}
+  \vfill
+  \begin{block}{}
+    \centering Guarde o resultado, tá? Ele vai voltar no Módulo 4!
+  \end{block}
+\end{frame}
+% ---------------- M2 ----------------
+\subsection{M2. Epistemologia}
+\transicao{Módulo 2}{Epistemologia da IA generativa}
+\begin{frame}{A pergunta que organiza o curso}
+  \begin{block}{}
+    \centering\large
+    A IA Generativa muda \alert{o que} fazemos como pesquisadores\\
+    ou apenas \alert{como} fazemos?
+  \end{block}
+  \pause
+  \vfill
+  \begin{itemize}
+    \item Se muda só o \textit{como}, é ferramenta. Aprende-se e segue-se.
+    \pause
+    \item Se muda o \textit{quê}, mexe com a natureza do nosso trabalho, e aí precisamos discutir.
+  \end{itemize}
+\end{frame}
+\begin{frame}{Conhecimento explícito e conhecimento tácito}
+  \begin{block}{Uma distinção clássica}
+    \textbf{Conhecimento explícito} é o que pode ser formalizado, escrito, transferido em texto; é exatamente o que um modelo de linguagem processa bem.\\[4pt]
+    \textbf{Conhecimento tácito} é o julgamento construído na prática, no campo, na orientação, na leitura repetida; resiste à formalização exaustiva.
+  \end{block}
+  \pause
+  \vfill
+  \begin{alertblock}{}
+    A IA generativa lida bem com o explícito. Ela formaliza mal ou nem tenta formalizar, o tácito. Aqui entram o faro metodológico, o julgamento sobre relevância e o senso do que ``não fecha'' numa análise.
+  \end{alertblock}
+  \pause
+  \centering\scriptsize Punziano (2025), \textit{Societies}, propõe a ``epistemologia adaptativa'' para pensar essa reconfiguração nas Ciências Sociais.
+\end{frame}
+\begin{frame}{Quem tem autoridade epistêmica?}
+  \footnotesize
+  \begin{block}{Autoridade epistêmica}
+    O direito reconhecido de dizer o que conta como conhecimento válido. Tradicionalmente, quem testemunhou, mediu, leu e argumentou.
+  \end{block}
+  \pause
+  \vspace{0.1cm}
+  \begin{itemize}
+    \item A IA gera texto plausível \textbf{sem esse tipo de \textit{warrant}}. Não testemunhou, não mediu, nem decidiu nada.
+    \pause
+    \item Boriati (2026), \textit{Societies}: a IA como \textit{ator epistêmico} que coproduz sentido, não só instrumento neutro.
+    \pause
+    \item Aydeniz (2026), \textit{Sociology Compass}: a autoridade epistêmica se desloca quando quem ``sabe'' deixa de ser claramente humano.
+  \end{itemize}
+  \pause
+  \vspace{0.1cm}
+  \begin{alertblock}{}
+    \centering Se você aceita a resposta da IA sem julgamento, não delegou uma tarefa. Delegou a autoridade.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Sua resposta do Módulo 0, outra vez}
+  \small
+  Volte à resposta sobre capacidade estatal que você guardou.
+  \begin{itemize}
+    \item Ela ficou no conhecimento \textbf{explícito} (definição, dimensões da literatura), ou tentou entrar em \textbf{tácito} (qual exemplo era \textit{o mais relevante})?
+    \item Ao aceitar a resposta, você checou cada afirmação, ou emprestou a ela alguma \textbf{autoridade} que não foi conquistada?
+  \end{itemize}
+  \pause
+  \vfill
+  \begin{alertblock}{}
+    \centering Não há problema em usar a resposta como ponto de partida. O problema é usá-la como ponto final, sem esse julgamento.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Fechando o círculo, o quê ou o como?}
+  \begin{block}{}
+    \centering\large
+    A IA muda o \textit{como} quando o julgamento humano permanece no comando.\\
+    Muda o \textit{quê} quando esse julgamento é terceirizado sem perceber.
+  \end{block}
+\end{frame}
+% ---------------- M3 ----------------
+\subsection{M3. Sete problemas documentados}
+\transicao{Módulo 3}{Sete problemas documentados}
+\begin{frame}{Sete desafios que precisamos encarar}
+  \begin{columns}[t]
+    \column{0.5\textwidth}
+    \textbf{\color{laranjaDestaque}Problemas da máquina}
+    \begin{enumerate}
+      \item \textbf{Alucinação}: inventa com confiança;
+      \item \textbf{Viés}: reproduz o mundo dos dados em que foi treinada;
+      \item \textbf{Opacidade}: nem quem a fez explica a resposta;
+      \item \textbf{Irreprodutibilidade}: o mesmo prompt gera respostas diferentes a cada rodada.
+    \end{enumerate}
+    \column{0.5\textwidth}
+    \textbf{\color{laranjaDestaque}Problemas do uso}
+    \begin{enumerate}
+      \setcounter{enumi}{4}
+      \item \textbf{Perda de habilidade}: atrofia pelo uso precoce.
+      \item \textbf{Dados e privacidade}: o que você cola, você entrega.
+      \item \textbf{Paradoxo da transparência}: declarar o uso pode ser penalizado.
+    \end{enumerate}
+  \end{columns}
+  \vfill
+  \small\textit{Os quatro primeiros nascem de como o modelo funciona e os três últimos nascem de como \textbf{nós} o usamos.}
+\end{frame}
+\begin{frame}{Viés: por que isso nos afeta em particular?}
+  \begin{block}{O modelo aprendeu com o que estava disponível}
+    E o que estava disponível é majoritariamente \textbf{em inglês}, do Norte global, de autores mais traduzidos e mais citados.
+  \end{block}
+  \pause
+  \vfill
+  \begin{itemize}
+    \item A IA ``conhece'' muito melhor a literatura anglófona que a brasileira.
+    \item O mesmo viés de dados de treinamento que documenta discriminação algorítmica contra grupos brasileiros marginalizados afeta também como a IA trata temas e fontes nacionais (Silva, 2022).
+    \pause
+    \item \alert{Para quem pesquisa o Brasil, isso não é detalhe. E sim, limite de fundo.}
+  \end{itemize}
+\end{frame}
+\begin{frame}{Opacidade: por que não dá para abrir a caixa}
+  \small
+  \begin{block}{Três tipos de opacidade (Burrell, 2016)}
+    \begin{itemize}
+      \item \textbf{Sigilo intencional}: a empresa não revela como o modelo foi treinado.
+      \item \textbf{Analfabetismo técnico}: poucos sabem ler código ou matemática o suficiente para entender, mesmo se revelado.
+      \item \textbf{Opacidade de escala}: nem quem programou consegue explicar uma resposta específica, dado o tamanho do modelo.
+    \end{itemize}
+  \end{block}
+  \pause
+  \vfill
+  \begin{alertblock}{}
+    \centering Isso vale até para a Anthropic, a OpenAI e o Google. \textbf{Ninguém} consegue apontar, com certeza, por que o modelo escolheu esta palavra e não outra.
+  \end{alertblock}
+\end{frame}
+\begin{frame}{Perda de habilidade e dados sensíveis}
+  \textbf{Perda de habilidade}
+  \begin{itemize}
+    \item O paralelo é a calculadora e o GPS: ganhamos velocidade, perdemos o cálculo mental e o senso de direção.
+    \item Numa formação de pesquisador, temos: a ferramenta está \textbf{ampliando} uma competência ou \textbf{impedindo} que ela se forme?
+  \end{itemize}
+  \pause
+  \vspace{0.3cm}
+  \textbf{Dados e privacidade}
+  \begin{itemize}
+    \item Colar um texto numa IA é \textbf{enviá-lo a uma empresa} (alimenta-la com nossos dados);
+    \item Entrevistas, dados de campo e material sob sigilo, \alert{não vão para a IA} sem anonimização.\\ \textbf{Atenção à LGPD e ao comitê de ética.}
+  \end{itemize}
+\end{frame}
+\begin{frame}{Irreprodutibilidade: o problema que atinge o método}
+  \begin{alertblock}{A mecânica}
+    O mesmo prompt, no mesmo modelo, produz respostas diferentes a cada execução. A variação não é erro, é parte de como o modelo gera texto.
+  \end{alertblock}
+  \pause
+  \vfill
+  \begin{itemize}
+    \item Isso compromete diretamente a lógica de replicabilidade que é central ao método científico;
+    \item Diferente de um erro humano replicável, aqui a variação é \textbf{estrutural} (Ouyang et al., 2025, \textit{ACM Transactions on Software Engineering and Methodology});
+    \pause
+    \item \alert{Implicação prática}, nunca cite ``a IA respondeu X'' como evidência fixa. \textbf{Registre data, versão do modelo e o prompt exato}. É o que sustenta a replicabilidade procedimental.
+  \end{itemize}
+\end{frame}
+\begin{frame}{O paradoxo da transparência}
+  \small
+  \begin{alertblock}{O que pode acontecer}
+    Declarar o uso de IA reduz a nota atribuída ao texto, mesmo quando o conteúdo é idêntico. Um experimento controlado mediu essa penalidade em 0,32 ponto, numa escala de 5, tanto para avaliadores humanos quanto para IA (Cheong et al., 2025).
+  \end{alertblock}
+  \pause
+  \vfill
+  \begin{itemize}
+    \item A simples menção à IA já aciona rejeição, mesmo quando o uso foi legítimo (BaHammam, 2025);
+    \item Isso cria um incentivo perverso: quem segue a regra ``declare todo uso'' pode ser penalizado por segui-la;
+    \pause
+    \item \alert{A resposta não é esconder!} É (1) reconhecer o problema e (2) cobrar mudança na cultura avaliativa, sem abandonar a transparência.
+  \end{itemize}
+\end{frame}
+\begin{frame}{Detectores de IA}
+  \small
+  \begin{alertblock}{Uma consequência prática da opacidade e da irreprodutibilidade}
+    Turnitin, GPTZero, Originality.ai e Copyleaks prometem identificar texto gerado por IA. Na prática, têm limitações documentadas que os tornam \textbf{inadequados como prova isolada}.
+  \end{alertblock}
+  \pause
+  \begin{itemize}
+    \item \textbf{Enviesados contra não nativos em inglês}. Liang et al. (2023), \textit{Patterns}, testaram sete detectores em redações TOEFL: \alert{61,3\% de falsos positivos} em textos de não nativos e quase zero em textos de nativos.
+    \item \textbf{Fáceis de enganar}. Acurácia de até 98\% só em texto não editado; uma revisão leve, como a que fazemos neste curso, já derruba a detecção.
+    \item \textbf{Sem validação robusta para o português} acadêmico.
+  \end{itemize}
+  \pause
+  \vspace{0.05cm}
+  \centering \textbf{Atenção}: o próprio fabricante do Turnitin orienta não tratar o percentual como prova definitiva.
+\end{frame}
+% ---------------- M4 ----------------
+\subsection{M4. Ética, integridade e regulação}
+\transicao{Módulo 4}{Ética, integridade e regulação}
+\begin{frame}{O documento de referência da nossa área}
+  \begin{exampleblock}{Leitura recomendada e usada na ANPOCS}
+    \textbf{SAMPAIO; SABBATINI; LIMONGI} (2024). \textit{Diretrizes para o uso ético e responsável da Inteligência Artificial Generativa: um guia prático para pesquisadores}. São Paulo: Intercom.
+  \end{exampleblock}
+  \pause
+  \begin{block}{O que ele diz, em três frases}
+    \begin{itemize}
+      \item \textbf{A IA não é coautora}: Quem responde pelo texto é você;
+      \item \textbf{Declare o uso}: Diga qual ferramenta e para quê;
+      \item \textbf{Verifique tudo}: especialmente as \textbf{referências}.
+    \end{itemize}
+  \end{block}
+  \pause
+  \centering\small São oito princípios no total. Estes três resolvem a maioria das dúvidas do dia a dia.
+\end{frame}
+\begin{frame}{O que as instituições decidiram (2025--2026)}
+  \footnotesize
+  \begin{columns}[t]
+    \column{0.5\textwidth}
+    \textbf{\color{azulUNI}Agências de fomento}
+    \begin{itemize}
+      \item \textbf{CNPq}: Portaria 2.664/2026, \alert{primeira norma federal obrigatória}. Autoria e responsabilidade integral do pesquisador;
+      \item \textbf{CAPES}: sem portaria própria; Nota Técnica nº 3/2025 trata de integridade acadêmica e IA em teses, alinhada ao CNPq;
+      \item \textbf{FAPESP}: sem documento específico, mas com regras de transparência em relatórios.
+    \end{itemize}
+    \column{0.5\textwidth}
+    \textbf{\color{azulUNI}Universidades}
+    \begin{itemize}
+      \item \textbf{USP}: Portaria GR 9004/2026;
+      \item \textbf{UFC}: Portaria 39/2025, pioneira e \textit{sem caráter punitivo};
+      \item \textbf{Unifesp}: Resolução 17/2025 (CPGPq), declaração obrigatória em teses;
+      \item \textbf{43\% das federais} (30 de 69) já têm protocolo ou constroem um (Andifes, 2026).
+    \end{itemize}
+  \end{columns}
+  \pause
+  \vspace{0.15cm}
+  \begin{block}{}
+    \centering A pergunta deixou de ser \textit{se} declarar o uso de IA. É \textbf{como} declarar.
+  \end{block}
+\end{frame}
+\begin{frame}{USP, o ETDIA (Portaria GR 9004/2026)}
+  \begin{exampleblock}{O que a portaria de fato cria}
+    Em 10 de março de 2026, o Reitor criou, junto ao Gabinete do Reitor, o \textbf{Escritório de Transformação Digital e Inteligência Artificial (ETDIA)}.
+  \end{exampleblock}
+  \pause
+  \begin{block}{Finalidade (Art. 2º)}
+    Apoiar a USP na definição de diretrizes, na coordenação institucional e na promoção de boas práticas relacionadas à Transformação Digital e ao \textbf{uso ético e responsável da IA}.
+  \end{block}
+  \pause
+  \centering\small É um escritório de governança, dirigido por um Coordenador indicado pelo Reitor, articulado com STI, EGIDA e o Escritório de Proteção de Dados.
+\end{frame}
+\begin{frame}{USP: o que o ETDIA vai fazer (Art. 3º)?}
+  \small
+  \begin{itemize}
+    \item Propor diretrizes e políticas institucionais para TD e uso de IA no ensino, na pesquisa, na extensão e na gestão;
+    \item Propor uma \textbf{ementa-base institucional em IA}, adaptável por área e curso;
+    \item Apoiar a formação de docentes capacitadores em IA e competências digitais;
+    \item Realizar benchmarking com universidades de referência, nacionais e internacionais.
+  \end{itemize}
+  \pause
+  \vfill
+  \begin{alertblock}{Atenção}
+    A portaria cria o escritório e sua missão. Ela \textbf{não} estabelece, por si só, uma obrigação de declaração de uso de IA na pós-graduação. Regras desse tipo, se vierem, dependem de atos complementares da Reitoria (Art. 5º) ou de normas de cada unidade.
+  \end{alertblock}
+\end{frame}
+\begin{frame}{FAPESP: o que está confirmado e o que falta verificar?}
+  \begin{block}{O que é verificável hoje}
+    A FAPESP mantém \textbf{Normas para Uso de Recursos e Prestação de Contas} e políticas para acesso abertos e propriedade intelectual, que tratam de autoria, integridade e transparência na pesquisa financiada.
+  \end{block}
+  \pause
+  \begin{alertblock}{Lacuna}
+    Nesta busca, \textbf{não localizei} uma norma específica e publicada da FAPESP sobre uso de IA generativa, comparável à Portaria 2.664/2026 do CNPq ou à do CNPq adotada pela CAPES.
+  \end{alertblock}
+\end{frame}
+\begin{frame}{E no mundo e nos periódicos?}
+  \small
+  \begin{itemize}
+    \item \textbf{União Europeia, AI Act, Artigo 4} (vigor desde fev/2025): o letramento em IA virou \alert{obrigação legal} de quem usa e oferece essas ferramentas, universidades incluídas;
+    \pause
+    \item \textbf{NTU Singapura}: toda tese leva uma declaração de originalidade dizendo como a IA foi usada (transparência sem punição);
+    \pause
+    \item \textbf{AJPS} (\textit{American Journal of Political Science}, política de ago/2026): o autor \textbf{pode} usar IA, mas declara em nota de rodapé; \alert{o parecerista não pode subir o manuscrito à IA}, só organizar as próprias ideias.
+  \end{itemize}
+  \pause
+  \vspace{0.15cm}
+  \begin{block}{Convergência internacional}
+    Letramento $\bullet$ transparência $\bullet$ autoria humana $\bullet$ distinção entre uso do autor e do avaliador $\bullet$ declaração de uso.
+  \end{block}
+\end{frame}
+\begin{frame}{Então: o que é permitido?}
+  \footnotesize
+  \begin{columns}[t]
+    \column{0.33\textwidth}
+    \textbf{\color{verdeCodigo}Em geral, aceito:}
+    \begin{itemize}
+      \item Revisar gramática e clareza
+      \item Traduzir trechos
+      \item Resumir texto \textit{que você leu}
+      \item Sugerir palavras-chave
+      \item Formatar referências \textit{que você tem}
+      \item Apoiar código
+    \end{itemize}
+    \column{0.33\textwidth}
+    \textbf{\color{laranjaDestaque}Aceito \textit{com} cuidado:}
+    \begin{itemize}
+      \item Estruturar argumentos
+      \item Fichar textos
+      \item Interpretar resultados
+      \item Gerar \textit{abstract}
+    \end{itemize}
+    \vspace{0.1cm}
+    \scriptsize\textit{Exige revisão crítica e, em geral, declaração.}
+    \column{0.33\textwidth}
+    \textbf{\color{laranjaDestaque}Vedado ou grave}
+    \begin{itemize}
+      \item IA como coautora
+      \item Referências não verificadas
+      \item Gerar resultados/dados
+      \item Dados sensíveis sem anonimizar
+      \item IA no manuscrito sob avaliação (parecer)
+      \item Não declarar o uso
+    \end{itemize}
+  \end{columns}
+  \pause
+  \vspace{0.05cm}
+  \begin{alertblock}{}
+    \centering As cores não são lei. São apenas \textbf{grau de cuidado}. A norma do seu programa e do periódico sempre manda mais.
+  \end{alertblock}
+\end{frame}
+\begin{frame}{Agora, a prática! Quatro casos}
+  \small
+  \begin{block}{Formato em 40 minutos}
+    \begin{enumerate}
+      \item Quatro casos concretos, projetados um a um.
+      \item Em cada caso, \textbf{2 min} pensando sozinho e \textbf{8 min} discutindo em grupo.
+      \item Registramos no quadro os critérios que a turma for construindo.
+    \end{enumerate}
+  \end{block}
+  \pause
+  \vspace{0.2cm}
+  \begin{itemize}
+    \item \textbf{Não existe gabarito}, mas um \textbf{critério defensável};
+    \item Evitem os dois extremos: ``a IA resolve tudo'' e ``IA é fraude'';
+    \pause
+    \item \alert{No fim, queremos sair com uma lista de acordos práticos, nossa, do CEM.}
+  \end{itemize}
+\end{frame}
+\begin{frame}{A revisão de literatura (Caso 1)}
+  \begin{alertblock}{}
+    \centering\large
+    Um pós-graduando usa IA para redigir \textbf{toda} a revisão de literatura da dissertação. Depois lê tudo, corrige e verifica cada referência.
+  \end{alertblock}
+  \vfill
+  \begin{itemize}
+    \item É uso legítimo? Onde exatamente está a linha?
+    \item Muda alguma coisa se ele \textbf{declarar} o uso?
+    \item E se, em vez de ``toda a revisão'', fosse ``o primeiro rascunho''?
+     \item Nesse caso, qual (is) acordo (s) você(s) sugere(m)?
+  \end{itemize}
+\end{frame}
+\begin{frame}{As entrevistas (Caso 2)}
+  \begin{alertblock}{}
+    \centering\large
+    Uma pesquisadora tem 40 entrevistas transcritas e cola todas numa IA para pedir uma \textbf{análise temática}.
+  \end{alertblock}
+  \vfill
+  \begin{itemize}
+    \item Quais problemas vocês enxergam aqui? (Pensem em \textbf{dois} tipos diferentes.)
+    \item O que o comitê de ética diria? E a LGPD?
+    \item Existe uma forma segura de fazer algo parecido?
+         \item Nesse caso, qual (is) acordo (s) você(s) sugere(m)?
+  \end{itemize}
+\end{frame}
+\begin{frame}{O parecer (Caso 3)}
+  \begin{alertblock}{}
+    \centering\large
+    Um professor recebe um artigo para \textbf{parecer} de um periódico. Cola o manuscrito na IA e pede ajuda para avaliar.
+  \end{alertblock}
+  \vfill
+  \begin{itemize}
+    \item O que há de errado aqui que não havia nos casos anteriores?
+    \item Por que a AJPS, e tantos outros periódicos, \textbf{vedam} isso ao parecerista?
+    \item E se ele usasse a IA só para revisar o \textit{português} do parecer que ele mesmo escreveu?
+         \item Nesse caso, qual (is) acordo (s) você(s) sugere(m)?
+  \end{itemize}
+\end{frame}
+\begin{frame}{A aula (Caso 4)}
+  \begin{alertblock}{}
+    \centering\large
+    Uma docente pede à IA que gere o \textbf{plano de aula} e a \textbf{lista de leituras} de uma disciplina nova e leva para a sala sem revisar.
+  \end{alertblock}
+  \vfill
+  \begin{itemize}
+    \item Qual o risco mais provável de acontecer? (Lembrem do Hands-on 1.)
+    \item E se ela revisasse tudo? Continua sendo problema?
+    \item Ela precisa contar aos alunos que usou IA?
+         \item Nesse caso, qual (is) acordo (s) você(s) sugere(m)?
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Fechando o debate}
+  \begin{block}{O que ficou no quadro}
+    \centering Os critérios que \textbf{vocês} construíram nos quatro casos.
+  \end{block}
+  \pause
+  \vfill
+  \begin{itemize}
+    \item Voltando à pergunta do Módulo 2, a IA mudou \textit{o quê} ou \textit{o como} do nosso trabalho?
+    \pause
+    \item Lembrem do paradoxo da transparência e da irreprodutibilidade (Módulo 3). Eles não têm solução fácil e exigem julgamento constante, não uma regra decorada.
+    \pause
+    \item \alert{Por isso o critério importa mais que a regra decorada.}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Referências do Dia 1 (1/2), artigos e guias}
+  \tiny
+  \begin{itemize}
+    \item ALKAISSI, H.; MCFARLANE, S. I. Artificial Hallucinations in ChatGPT: Implications in Scientific Writing. \textit{Cureus}, v. 15, e35179, 2023.
+    \item AYDENIZ, M. Engineering Education at the Intersection of Knowledge, Work, and Power: Generative AI and Epistemic Authority. \textit{Sociology Compass}, 2026.
+    \item BAHAMMAM, A. S. The Transparency Paradox: Why Researchers Avoid Disclosing AI Assistance in Scientific Writing. \textit{Nature and Science of Sleep}, 2025. DOI: 10.2147/NSS.S568375.
+    \item BORIATI, D. From Research Tool to Epistemic Actor: Artificial Intelligence as Co-Producer of Social Knowledge. \textit{Societies}, v. 16, n. 6, p. 192, 2026.
+    \item BURRELL, J. How the Machine Thinks: Understanding Opacity in Machine Learning Algorithms. \textit{Big Data \& Society}, v. 3, 2016. DOI: 10.1177/2053951715622512.
+    \item CHEONG, I. et al. Penalizing Transparency? How AI Disclosure and Author Demographics Shape Human and AI Judgments About Writing. Preprint, arXiv:2507.01418, 2025.
+    \item LIANG, W. et al. GPT detectors are biased against non-native English writers. \textit{Patterns}, v. 4, n. 7, 2023.
+    \item OUYANG, S. et al. An Empirical Study of the Non-Determinism of ChatGPT in Code Generation. \textit{ACM Transactions on Software Engineering and Methodology}, 2025. DOI: 10.1145/3697010.
+    \item PUNZIANO, G. Adaptive Epistemology: Embracing Generative AI as a Paradigm Shift in Social Science. \textit{Societies}, v. 15, n. 7, p. 205, 2025.
+    \item SAMPAIO, R. C.; SABBATINI, M.; LIMONGI, R. Diretrizes para o uso ético e responsável da Inteligência Artificial Generativa. São Paulo: Intercom, 2024.
+    \item SILVA, T. Racismo algorítmico: inteligência artificial e discriminação nas redes digitais. São Paulo: Edições Sesc, 2022.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Referências do Dia 1 (2/2), normas e legislação}
+  \tiny
+  \begin{itemize}
+    \item AMERICAN JOURNAL OF POLITICAL SCIENCE. AJPS AI Policy. Atualizada em 11 ago. 2026. Disponível em: \url{https://ajps.org/ajps-ai-policy/}.
+    \item ANDIFES. Levantamento sobre protocolos de IA nas universidades federais. 2026. \alert{[fonte de divulgação, verificar nota técnica original antes de citar em texto formal]}
+    \item BRASIL. CAPES. Nota Técnica nº 3/2025, integridade acadêmica e uso de IA em dissertações e teses.
+    \item BRASIL. CNPq. Portaria nº 2.664, de 6 de março de 2026. Institui a Política de Integridade na Atividade Científica. Disponível em: \url{gov.br/cnpq}.
+    \item FAPESP. Norma específica sobre IA generativa não localizada nesta busca; ver Normas para Uso de Recursos e Prestação de Contas.
+    \item NTU SINGAPORE. NTU Position on the Use of Generative Artificial Intelligence in Research, 2023.
+    \item UFBA. Guia para Uso Ético e Responsável da Inteligência Artificial Generativa na UFBA, 2025--2026.
+    \item UFC. Portaria nº 39/PRPPG/UFC, 2025.
+    \item UFF. Guia para o Uso de Ferramentas de IA Generativa, out. 2025.
+    \item UNIÃO EUROPEIA. AI Act, Artigo 4º e Artigo 50.
+    \item UNIFESP. Resolução nº 17/2025 (CPGPq), diretrizes para uso de IA generativa na pós-graduação e na pesquisa.
+    \item USP. Portaria GR nº 9004, de 10 de março de 2026. Cria o ETDIA.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[plain]
+  \centering
+  \vspace*{2cm}
+  {\Huge\color{azulUNI}\textbf{Fim do Dia 1}}\\[1cm]
+  {\large Hoje: o que é, epistemologia, o que erra, o que as normas dizem.}\\[0.6cm]
+  {\normalsize\color{laranjaDestaque} Amanhã: prompts, ensino, pesquisa, escrita acadêmica, agentes e \textit{skills}, e a síntese final.}
+\end{frame}
+
+% =====================================================================
+\section{Dia 2}
+\aberturadia{DIA 2}{Praticar e aplicar}{8h00 -- 12h30}
+% =====================================================================
+
+% ---------------- M5 ----------------
+\subsection{M5. Escrevendo bons prompts}
+\transicao{Módulo 5}{Escrevendo bons prompts: modelos, dicas e \textit{hands-on}}
+
+\begin{frame}{Antes e depois}
+  \begin{alertblock}{Prompt ruim}
+    \centering\textit{``Me fale sobre capacidade estatal.''}
+  \end{alertblock}
+  \pause
+  \begin{exampleblock}{Prompt bom}
+    \small
+    \textit{``Você é um professor de Ciência Política. Explique o conceito de capacidade estatal para alunos de graduação que nunca ouviram o termo. Estruture em: (1) definição em uma frase; (2) as três dimensões mais usadas na literatura; (3) um exemplo brasileiro concreto. Use no máximo 300 palavras, em português acadêmico acessível. Não cite referências, prefiro buscá-las eu mesmo.''}
+  \end{exampleblock}
+  \pause
+  \centering\small O segundo diz \textbf{quem}, \textbf{o quê}, \textbf{como}, \textbf{quanto} e \textbf{o que não fazer}.
+\end{frame}
+
+\begin{frame}{A anatomia de um bom prompt}
+  \centering
+  \begin{tikzpicture}[node distance=0.35cm and 0.6cm]
+    \tikzstyle{comp}=[rectangle, rounded corners, draw=azulUNI, very thick,
+                      fill=cinzaSaida, text width=2.2cm, align=center, minimum height=1.5cm]
+    \tikzstyle{seta}=[-{Latex[length=2mm]}, very thick, azulUNI]
+    \node[comp] (papel) {\textbf{1. Papel}\\\tiny quem a IA deve ser};
+    \node[comp, right=of papel] (tarefa) {\textbf{2. Tarefa}\\\tiny o que fazer};
+    \node[comp, right=of tarefa] (contexto) {\textbf{3. Contexto}\\\tiny o que ela precisa saber};
+    \node[comp, right=of contexto] (exemplos) {\textbf{4. Exemplos}\\\tiny como deve ficar};
+    \node[comp, right=of exemplos] (formato) {\textbf{5. Formato}\\\tiny estrutura e tamanho};
+    \draw[seta] (papel) -- (tarefa);
+    \draw[seta] (tarefa) -- (contexto);
+    \draw[seta] (contexto) -- (exemplos);
+    \draw[seta] (exemplos) -- (formato);
+  \end{tikzpicture}
+  \pause
+  \vfill
+  \begin{block}{}
+    \centering Nem todo prompt precisa dos cinco. Mas quando a resposta vem ruim, \\ quase sempre \textbf{falta um deles}.
+  \end{block}
+\end{frame}
+
+\begin{frame}{Diagnóstico rápido, por que a resposta veio ruim}
+  \small
+  Antes de reescrever o prompt inteiro, identifique qual dos cinco elementos falhou. É quase sempre só um.
+  \begin{center}
+  \scriptsize
+  \renewcommand{\arraystretch}{1.3}
+  \begin{tabular}{p{2.6cm} p{9.6cm}}
+    \toprule
+    \textbf{Elemento que falta} & \textbf{Como isso aparece na resposta ruim} \\
+    \midrule
+    (1) Papel & Tom, nível ou vocabulário fora do esperado, técnico demais ou informal demais. \\
+    (2) Tarefa & A IA foge do que foi pedido, responde outra coisa ou mistura vários pedidos. \\
+    (3) Contexto & Resposta genérica, que serviria para qualquer disciplina ou qualquer público. \\
+    (4) Exemplos & Conteúdo até correto, mas no formato, tom ou estilo que você não queria. \\
+    (5) Formato & Estrutura, extensão ou forma de entrega fora do especificado. \\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Esqueleto para montar o seu prompt}
+\begin{lstlisting}
+[Papel] Você é [quem a IA deve ser: um professor, um revisor de
+periódico, um estatístico...].
+
+[Tarefa] [O que fazer, com um verbo de ação claro: resuma,
+compare, revise, classifique, traduza...].
+
+[Contexto] [O que ela precisa saber para fazer isso bem: público,
+nível, disciplina, tamanho do material, restrições].
+
+[Exemplos] [Como deve ficar o resultado, ou o que evitar: um
+exemplo curto, um tom de referência, um contraexemplo].
+
+[Formato] [Estrutura, extensão e forma de entrega: tópicos,
+tabela, número de palavras, com ou sem referências].
+\end{lstlisting}
+\centering\small Copie, preencha os colchetes e ajuste. É o modelo 00 do kit de sobrevivência.
+\end{frame}
+
+\begin{frame}{Duas instruções que evitam retrabalho}
+  \begin{exampleblock}{Feche sempre o prompt com}
+    \small
+    (1) \textit{``Pergunte antes de prosseguir sempre que houver dúvida''}; (2) \textit{``Só produza o arquivo final depois que eu confirmar com um OK''}.
+  \end{exampleblock}
+  \pause
+  \vfill
+  \begin{itemize}
+    \item Essas duas linhas evitam retrabalho, alucinação por ambiguidade e edição fora do combinado.
+    \pause
+    \item \alert{Guarde os prompts que funcionam} num arquivo simples, organizado por tarefa. Da próxima vez, é copiar, ajustar e usar, não reescrever do zero.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Construa e refine o seu prompt (Hands-on 2)}
+  \begin{block}{Escolha uma tarefa real sua}
+    Um plano de aula, uma pergunta de pesquisa, um parágrafo a revisar, um e-mail formal. Escreva um prompt para ela usando os cinco elementos.
+  \end{block}
+  \vfill
+  \begin{enumerate}
+    \item Rode na sua IA e leia a resposta com espírito crítico.
+    \item Troque o prompt (não a resposta) com o colega ao lado: falta algum dos cinco elementos?
+    \item Ajuste só o elemento que faltou e rode de novo.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{Boas práticas para levar}
+  \small
+  \begin{columns}[t]
+    \column{0.5\textwidth}
+    \textbf{Ao pedir}
+    \begin{itemize}
+      \item Separe a instrução do texto (aspas ou marcadores).
+      \item Peça o raciocínio em passos quando for complexo.
+      \item Peça alternativas, como ``me dê 3 versões''.
+      \item Peça autocrítica: ``o que há de fraco nisso?''
+    \end{itemize}
+    \column{0.5\textwidth}
+    \textbf{Ao usar}
+    \begin{itemize}
+      \item Conversa nova para tarefa nova.
+      \item Anexe só o trecho relevante.
+      \item \textbf{Guarde os prompts que funcionaram.}
+      \item Registre ferramenta, versão e data.
+    \end{itemize}
+  \end{columns}
+  \pause
+  \vspace{0.25cm}
+  \begin{alertblock}{Regra de ouro nº 2}
+    \centering Nenhuma saída entra no seu trabalho sem a sua revisão crítica.
+  \end{alertblock}
+\end{frame}
+
+% ---------------- M6 ----------------
+\subsection{M6. IA no ensino}
+\transicao{Módulo 6}{IA no ensino: aulas e apresentações}
+
+\begin{frame}{O que a IA faz bem na docência}
+  \begin{columns}[t]
+    \column{0.5\textwidth}
+    \textbf{\color{verdeCodigo}Ajuda de verdade}
+    \begin{itemize}
+      \item Rascunhar plano de aula
+      \item Gerar exercícios e questões
+      \item Criar exemplos e analogias
+      \item Adaptar linguagem ao nível da turma
+      \item Elaborar rubricas de avaliação
+      \item Resumir texto denso \textit{que você já leu}
+    \end{itemize}
+    \column{0.5\textwidth}
+    \textbf{\color{laranjaDestaque}Cuidado}
+    \begin{itemize}
+      \item Lista de leituras (\alert{referências inventadas})
+      \item Corrigir trabalho sem ler
+      \item Conteúdo factual sem conferir
+      \item Levar para a sala sem revisar
+    \end{itemize}
+  \end{columns}
+  \pause
+  \vfill
+  \begin{block}{}
+    \centering A IA rascunha. \textbf{Você ensina.}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Modelo de prompt para plano de aula}
+\begin{lstlisting}
+Você é um professor universitário de Ciências Sociais, com
+experiência em didática do ensino superior.
+Elabore o plano de uma aula de 100 minutos para uma turma de
+[graduação/pós] sobre: [INSERIR TEMA].
+O plano deve conter:
+1. Uma pergunta motivadora inicial.
+2. Três blocos conceituais, com tempo estimado.
+3. Uma atividade de discussão em grupo.
+4. Síntese final.
+Para cada bloco, indique o objetivo de aprendizagem e o
+conteúdo central.
+Não sugira bibliografia: eu mesmo seleciono as leituras.
+Formato: tabela com a estrutura, seguida da descrição.
+\end{lstlisting}
+\centering\small\alert{Note a instrução negativa. Ela elimina o maior risco.}
+\end{frame}
+
+\begin{frame}[fragile]{Modelo de prompt para questões de avaliação}
+\begin{lstlisting}
+Você é professor(a) de [disciplina/nível]. Elabore 5 questões
+sobre [TEMA]: 2 dissertativas, 2 de múltipla escolha com 4
+alternativas plausíveis, 1 de análise de caso curto.
+
+Para cada questão, indique: o objetivo de aprendizagem segundo a
+taxonomia de Bloom, o tempo estimado de resposta e um gabarito
+comentado. Não invente dados estatísticos ou fatos nos
+enunciados: use apenas conceitos e categorias da literatura.
+\end{lstlisting}
+\centering\small Peça também uma tabela de especificação (questão x objetivo x peso sugerido).
+\end{frame}
+
+\begin{frame}{Apresentações com IA}
+  \footnotesize
+  \begin{block}{O que já existe}
+    \begin{itemize}
+      \item \textbf{Gamma}: gera a apresentação inteira, estrutura e imagens, a partir de um único prompt.
+      \item \textbf{Claude} (Artifacts ou Cowork): monta slides a partir de um conteúdo que \textit{você} já validou.
+    \end{itemize}
+  \end{block}
+  \pause
+  \vspace{0.15cm}
+  \begin{alertblock}{O risco}
+    \begin{itemize}
+      \item Nenhuma delas entrega uma apresentação pronta para a sala sem revisão.
+      \item O ganho é de \textbf{tempo de montagem}, não de conteúdo. Texto, dados e exemplos exigem a mesma checagem de sempre.
+    \end{itemize}
+  \end{alertblock}
+  \pause
+  \vspace{0.1cm}
+  \centering Use a IA para o rascunho visual. A aula e os exemplos continuam seus.
+\end{frame}
+
+\begin{frame}[fragile]{Modelo de prompt para apresentação}
+\begin{lstlisting}
+Você é um designer instrucional. A partir do plano de aula abaixo
+(ou anexo), organize o conteúdo em uma sequência de slides para
+uma apresentação de [N] minutos.
+
+Para cada slide, indique: título, de 3 a 5 pontos-chave (frases
+curtas, não parágrafos) e uma sugestão de elemento visual (gráfico,
+esquema, imagem descritiva), quando fizer sentido.
+
+Não invente dado, exemplo ou citação que não esteja no meu plano
+de aula. Se um bloco for denso demais para um slide, sugira como
+dividir em mais de um.
+\end{lstlisting}
+\centering\small Cole essa estrutura no Gamma, no Claude ou monte manualmente. A revisão de conteúdo continua sendo sua.
+\end{frame}
+
+\begin{frame}{E o outro lado: os alunos usam}
+  \begin{block}{O fato}
+    Eles já usam. A pergunta não é como impedir, é o que fazer.
+  \end{block}
+  \pause
+  \vfill
+  \begin{itemize}
+    \item \textbf{Explicitar a regra} no plano de ensino, o que é permitido nesta disciplina e o que não é.
+    \pause
+    \item \textbf{Pedir declaração} de uso nos trabalhos, como a NTU faz com teses.
+    \pause
+    \item \textbf{Repensar a avaliação}. O que a IA faz em 10 segundos talvez não devesse valer nota. Defesa oral, processo, discussão em aula.
+    \pause
+    \item \alert{O teste da defesa oral}. Se o aluno não consegue defender o que entregou, o problema apareceu.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Checklist, antes de usar IA no ensino e na avaliação}
+  \small
+  \begin{itemize}
+    \item[$\square$] Verifiquei conceitos, dados e exemplos gerados por IA antes de levar para a aula, contra alucinação?
+    \item[$\square$] Deixei claro para a turma o que é aceito, aceito com cuidado ou vedado no uso de IA na disciplina?
+    \item[$\square$] Testei se as questões geradas por IA têm resposta única, correta e defensável?
+    \item[$\square$] Evitei usar IA para gerar parecer ou \textit{feedback} substantivo sobre um trabalho sem revisão integral minha?
+    \item[$\square$] Atualizei minha própria declaração de uso de IA no plano de ensino ou no material do curso?
+  \end{itemize}
+\end{frame}
+
+% ---------------- M7 ----------------
+\subsection{M7. IA na pesquisa}
+\transicao{Módulo 7}{IA na pesquisa: ferramentas de busca e experiências de IAs acadêmicas}
+
+\begin{frame}{As três linhagens da IA na pesquisa}
+  \small
+  \begin{columns}[t]
+    \column{0.33\textwidth}
+    \begin{block}{\scriptsize Linhagem 1}
+      \textbf{Recuperação com base real}\\[2pt]
+      \scriptsize Semantic Scholar, Google Scholar, Connected Papers, ResearchRabbit, OpenAlex. Indexam e recomendam; não inventam.
+    \end{block}
+    \column{0.33\textwidth}
+    \begin{block}{\scriptsize Linhagem 2}
+      \textbf{Síntese generativa}\\[2pt]
+      \scriptsize Claude, ChatGPT, Gemini. Trabalham sobre o material que \textit{você} fornece. Aqui mora o risco de alucinação.
+    \end{block}
+    \column{0.33\textwidth}
+    \begin{block}{\scriptsize Linhagem 3}
+      \textbf{Agentes de pesquisa autônoma}\\[2pt]
+      \scriptsize \textit{Deep research}, Gemini Notebook sobre múltiplos documentos, Claude Code. Encadeiam passos com autonomia.
+    \end{block}
+  \end{columns}
+  \pause
+  \vfill
+  \begin{alertblock}{A distinção que resolve tudo}
+    Use a Linhagem 1 para \textbf{encontrar} literatura. Use a Linhagem 2 para \textbf{trabalhar} a literatura que você já tem. A Linhagem 3, agentes autônomos, é o tema inteiro do Módulo 9.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Qual IA usar para qual tarefa}
+  \scriptsize
+  \renewcommand{\arraystretch}{1.15}
+  \begin{tabular}{p{3.0cm} p{2.9cm} p{7.3cm}}
+    \toprule
+    \textbf{Tarefa} & \textbf{Categoria} & \textbf{Por quê} \\
+    \midrule
+    Ler e sintetizar um PDF longo & Claude (com arquivos) ou Gemini Notebook & Ancoradas no material carregado, reduzem a resposta fora da fonte. \\
+    Buscar literatura com citação rastreável & Perplexity, Consensus, Elicit, OpenAlex & Retornam trechos e links da fonte junto da resposta. \\
+    Mapear redes de citação & ResearchRabbit, Litmaps & Mostram a evolução da literatura e citações de um trabalho central. \\
+    Organizar dezenas de textos & Gemini Notebook & Centraliza várias fontes num só espaço, com rastreabilidade. \\
+    Apoiar código estatístico & Claude, ChatGPT (execução de código) & Geram e testam o código; a lógica estatística continua sendo sua. \\
+    \bottomrule
+  \end{tabular}
+  \pause
+  \vspace{0.2cm}
+  \begin{exampleblock}{}
+    \centering Ferramenta ancorada em fonte (você anexa o PDF) alucina menos que ferramenta de busca livre.
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Simples ou complexo? O esforço certo do modelo}
+  \small
+  \begin{itemize}
+    \item A maioria dos provedores oferece níveis de esforço: modelos rápidos para tarefas simples, modelos de raciocínio estendido para tarefas com várias etapas.
+    \item O nível certo não é só questão de custo.
+  \end{itemize}
+  \pause
+  \vfill
+  \begin{alertblock}{Mais ``pensamento'' não é sempre melhor}
+    \begin{itemize}
+      \item Raciocínio estendido pode gastar centenas de tokens numa conta trivial sem ganho de acurácia, o \textit{overthinking} (Chen et al., 2025).
+      \item Além de certo limiar de complexidade, o mesmo tipo de modelo tende a \textbf{piorar}, não melhorar (Shojaee et al., 2025, Apple Machine Learning Research).
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Esforço baixo, médio e alto, na prática}
+  \scriptsize
+  \renewcommand{\arraystretch}{1.3}
+  \begin{tabular}{p{4.1cm} p{4.1cm} p{4.1cm}}
+    \toprule
+    \textbf{Baixo esforço} & \textbf{Médio esforço} & \textbf{Alto esforço} \\
+    \midrule
+    Revisão ortográfica e gramatical & Fichamento padrão de um texto & Desenho da metodologia de uma pesquisa \\
+    Traduzir um parágrafo curto & Formatar referências em ABNT & Sintetizar e comparar vários artigos \\
+    Responder uma pergunta factual simples & Rascunho de e-mail formal & Depurar um script com erro não óbvio \\
+    \bottomrule
+  \end{tabular}
+  \pause
+  \vfill
+  \begin{block}{Critério prático}
+    \centering Resposta objetiva e fácil de checar? Baixo esforço resolve. Exige ponderar \textit{trade-offs} ou encadear várias etapas? Vale o modelo mais avançado.
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Modelo de prompt, organizar meu desenho de pesquisa}
+\begin{lstlisting}
+Você é um metodólogo de pesquisa em Ciências Sociais. Abaixo
+estão minhas anotações sobre o desenho da pesquisa, mesmo
+incompletas: pergunta, hipóteses, variáveis e ideias de método.
+[COLE SUAS ANOTAÇÕES AQUI]
+
+A partir SOMENTE do que eu escrevi, organize: (1) a pergunta de
+pesquisa, sinalizando ambiguidade; (2) o tipo de desenho que já
+indico (quanti, quali ou misto); (3) as variáveis já mencionadas,
+organizadas; (4) lacunas que eu precise resolver antes de seguir.
+
+Não proponha método, variável ou hipótese que eu não tenha
+mencionado. Aponte a pergunta que falta responder, não a resposta.
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Modelo de prompt, revisão sistemática (PRISMA)}
+\begin{lstlisting}
+Você é um pesquisador experiente em revisão sistemática,
+seguindo o protocolo PRISMA 2020. Ajude-me a montar a
+estratégia de busca sobre: [TEMA].
+
+Produza: (1) 3 a 5 combinações de string de busca (operadores
+booleanos) para bases como Scopus e Web of Science; (2)
+critérios de inclusão e exclusão; (3) categorias a extrair de
+cada artigo incluído; (4) um rascunho do fluxograma PRISMA.
+
+Não simule ou invente resultado de busca: eu mesmo rodo as
+strings nas bases e colo os resultados de volta.
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Três armadilhas na síntese de literatura}
+  \begin{enumerate}
+    \item \textbf{Achatamento}, o resumo apaga as tensões teóricas. Fica tudo parecendo consenso.
+    \pause
+    \item \textbf{Falsa familiaridade}, ler o resumo dá a \textit{sensação} de ter lido o texto. Não deu.
+    \pause
+    \item \textbf{Seleção enviesada}, ela devolve o que \textit{parece} relevante, não o que é central no campo.
+  \end{enumerate}
+  \pause
+  \vfill
+  \begin{block}{}
+    \centering A IA é ótima para \textbf{organizar} o que você leu. \\ É péssima para \textbf{substituir} a leitura.
+  \end{block}
+\end{frame}
+
+\begin{frame}{Dados sensíveis, a linha vermelha}
+  \begin{alertblock}{Não vão para a IA generativa}
+    Transcrições de entrevistas $\bullet$ dados de campo identificáveis $\bullet$ material sob sigilo $\bullet$ dados pessoais de terceiros $\bullet$ manuscrito alheio em avaliação.
+  \end{alertblock}
+  \pause
+  \vfill
+  \begin{itemize}
+    \item Colar numa IA é \textbf{transferir a uma empresa}. Isso conflita com a LGPD e com o que você assinou no comitê de ética.
+    \pause
+    \item Alternativas possíveis, anonimização rigorosa \textit{antes}, modelos auto-hospedados, ou simplesmente \textbf{não usar}.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Fichamento comparativo (Hands-on 3)}
+  \begin{exampleblock}{Cole ou anexe dois textos curtos sobre o mesmo tema}
+    \small
+    \textit{``Produza um fichamento comparativo dos dois textos abaixo:\\
+    (1) uma tabela comparando: argumento central, método, principal achado, limitação;\\
+    (2) uma síntese em 2 parágrafos: onde convergem, onde divergem.\\
+    Não invente informação. Se algo não estiver explícito no texto, escreva `não informado'.''}
+  \end{exampleblock}
+  \vfill
+  \begin{itemize}
+    \item Depois: \textbf{compare com a sua leitura}. O que a IA captou bem? O que ela achatou?
+    \item Perceba: a instrução ``não invente / marque não informado'' muda o resultado.
+  \end{itemize}
+\end{frame}
+
+% ---------------- M8 ----------------
+\subsection{M8. IA na escrita acadêmica}
+\transicao{Módulo 8}{IA na escrita acadêmica: maximizar, produzir e reportar o uso}
+
+\begin{frame}{Onde usar e onde não usar, na escrita}
+  \begin{columns}[t]
+    \column{0.48\textwidth}
+    \textbf{\color{verdeCodigo}Defensável}
+    \begin{itemize}
+      \item Revisar clareza e gramática
+      \item Apontar repetições
+      \item Sugerir transições
+      \item Reorganizar a estrutura
+      \item Traduzir trechos
+      \item Rascunhar \textit{abstract} do seu texto
+    \end{itemize}
+    \column{0.48\textwidth}
+    \textbf{\color{laranjaDestaque}Problemático}
+    \begin{itemize}
+      \item Gerar o argumento original
+      \item Inventar referências
+      \item Substituir a leitura crítica
+      \item Concluir sem dados
+      \item Escrever a discussão por você
+    \end{itemize}
+  \end{columns}
+  \pause
+  \vfill
+  \begin{alertblock}{O teste da defesa oral}
+    \centering Se você não consegue defender oralmente cada parágrafo, o uso foi indevido.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Seção por seção}
+  \small
+  \begin{tabular}{p{3.2cm} p{10.5cm}}
+    \toprule
+    \textbf{Seção} & \textbf{O que é razoável pedir} \\
+    \midrule
+    Introdução & Clareza e estrutura. \alert{A tese é sua.} \\
+    Referencial teórico & Organizar e comparar o que \textit{você} selecionou. Verificar todas as referências. \\
+    Metodologia & Só clareza da redação. \alert{Vários documentos restringem geração de metodologia.} \\
+    Resultados & \textbf{Nada.} A IA não gera resultados. Pode ajudar a redigir o que você achou. \\
+    Discussão & Fluência. \alert{A interpretação é o cerne autoral. Não terceirize.} \\
+    Revisão final & Gramática, clareza, coesão. O uso mais seguro e aceito. \\
+    \bottomrule
+  \end{tabular}
+\end{frame}
+
+\begin{frame}[fragile]{Modelo de prompt, revisão de parágrafo mantendo a voz autoral}
+\begin{lstlisting}
+Sugira melhorias de clareza, coesão e precisão neste parágrafo,
+MANTENDO minha voz e meu argumento. Não reescreva do zero.
+
+Para cada mudança, apresente: trecho original, trecho sugerido,
+tipo de mudança (clareza, coesão, precisão ou concisão) e uma
+justificativa breve. Classifique cada uma como obrigatória (erro
+real) ou opcional (preferência de estilo).
+
+Preserve o registro acadêmico e a terminologia da área. Ao final,
+ofereça 3 opções de reescrita do parágrafo completo (mais concisa,
+mais formal, mais direta), para eu escolher ou combinar.
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Melhore um parágrafo seu (Hands-on 4)}
+  \begin{exampleblock}{Cole um parágrafo real de um texto seu e use o modelo anterior}
+    \small Repare na diferença entre \textbf{melhorar} e \textbf{substituir}.
+  \end{exampleblock}
+  \vfill
+  \begin{itemize}
+    \item Pedir a explicação de cada mudança mantém você no comando e ensina a escrever melhor.
+    \item \alert{A IA trocou seu vocabulário técnico por termos genéricos? Isso é descaracterização.}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Modelo de prompt, tradução de \textit{abstract} (PT para EN)}
+\begin{lstlisting}
+Traduza o abstract abaixo para inglês acadêmico (US English),
+para submissão em periódico de [área]. Preserve a terminologia
+técnica e o hedging proporcional à evidência (não fortaleça nem
+enfraqueça as afirmações).
+
+Monte um glossário PT-EN dos termos técnicos, para eu manter
+consistência no manuscrito. Sinalize entre colchetes qualquer
+trecho ambíguo no original. Informe a contagem de palavras,
+considerando o limite de [N] do periódico.
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Modelo de prompt, resposta estruturada a parecerista}
+\begin{lstlisting}
+Organize minha resposta ao comentário abaixo em: (1) comentário,
+transcrito; (2) minha resposta, objetiva e respeitosa; (3)
+alteração realizada no manuscrito; (4) localização (página/seção).
+
+Classifique o comentário por tipo (metodológico, teórico, de
+redação) e por prioridade. Não amenize nem exagere minha
+concordância: mantenha o tom que eu indicar. Não invente
+justificativa metodológica que eu não tenha fornecido.
+\end{lstlisting}
+\centering\small O kit de sobrevivência traz mais três modelos deste eixo: projeto para agência de fomento, carta de motivação (BEPE/PDSE) e parecer \textit{ad hoc} como revisor.
+\end{frame}
+
+\begin{frame}{Sua declaração de uso, modelo curto}
+  \begin{exampleblock}{Adaptado de Sampaio, Sabbatini e Limongi (2024)}
+    \itshape ``Este trabalho utilizou a ferramenta [nome, versão] de IA generativa para [tarefa específica]. Todas as saídas foram revisadas, validadas e editadas pelo autor, que se responsabiliza integralmente pelo conteúdo final.''
+  \end{exampleblock}
+  \pause
+  \vfill
+  \begin{itemize}
+    \item \textbf{Onde}, nota de rodapé na primeira página, ou seção própria antes das referências.
+    \item \textbf{O que dizer}, qual ferramenta, para quê, e que você responde pelo texto.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Sua declaração de uso, modelo detalhado (padrão AJPS)}
+  \begin{exampleblock}{Segundo a AJPS AI Policy (2026)}
+    \small\itshape ``Este trabalho utilizou [ferramenta, versão] em [datas]. Uso que moldou diretamente o conteúdo: [tarefa específica], com [grau de supervisão]. Uso que apenas apoiou a redação: [tarefa geral]. O autor revisou e verificou todo o conteúdo gerado por IA, incluindo citações e dados, e assume integral responsabilidade pelo manuscrito.''
+  \end{exampleblock}
+  \pause
+  \vfill
+  \centering\small Distinga usos que moldaram diretamente a pesquisa dos que só apoiaram a redação. Correção ortográfica pontual não precisa de declaração; qualquer uso que toque dado ou análise, sim. Na dúvida, declare.
+\end{frame}
+
+\begin{frame}{Escreva sua declaração de uso (Hands-on 5)}
+  \begin{block}{}
+    \centering Escolha um trabalho real que você tem em andamento e escreva agora a sua declaração, usando um dos dois modelos.
+  \end{block}
+  \vfill
+  \begin{itemize}
+    \item Guarde-a junto ao trabalho. É a primeira peça do seu próprio kit de sobrevivência.
+    \item Voltamos a este ponto na síntese final do Módulo 10.
+  \end{itemize}
+\end{frame}
+
+% ---------------- M9 ----------------
+\subsection{M9. Desdobramentos contemporâneos}
+\transicao{Módulo 9}{Desdobramentos contemporâneos: agentes, \textit{skills} e assistentes de código}
+
+\begin{frame}{Além do chat, agentes de tarefa}
+  \small
+  \begin{block}{O que muda}
+    \begin{itemize}
+      \item Não sugere a próxima linha: recebe um objetivo, lê o material inteiro e planeja os passos.
+      \item Edita, testa e corrige sozinho, em ciclos sucessivos, até cumprir o objetivo.
+      \item Mais conhecidos: Claude Code (Anthropic) e Codex (OpenAI). Mesmo padrão no Gemini CLI e no Antigravity (Google).
+    \end{itemize}
+  \end{block}
+  \pause
+  \vfill
+  \begin{alertblock}{Por que voltamos aqui}
+    \centering Isso é a Linhagem 3 do Módulo 7, agentes de pesquisa autônoma, agora aplicada a código e a fluxos de trabalho inteiros.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Um caso real, documentado}
+  \begin{exampleblock}{Rakuten + Claude Code}
+    A equipe de engenharia da Rakuten usou o Claude Code para implementar sozinho, em sete horas de trabalho autônomo, um método complexo numa biblioteca de 12,5 milhões de linhas de código, com \textbf{99,9\% de acurácia} (Anthropic, relato de caso).
+  \end{exampleblock}
+  \pause
+  \vfill
+  \begin{itemize}
+    \item O ganho não é só velocidade: é encadear \textbf{muitas} etapas sem intervenção humana a cada uma.
+    \item \alert{E a supervisão?} Concentrou-se na definição do objetivo e na checagem do resultado final, não em cada passo.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Cowork, agentes para quem não programa}
+  \small
+  \begin{block}{O que é}
+    \begin{itemize}
+      \item Versão da Anthropic pensada para quem não programa.
+      \item Conecta pastas do seu computador e executa tarefas completas de arquivo e organização.
+      \item Exemplos: gerar planilhas, documentos e apresentações; organizar os arquivos de um projeto de pesquisa. Com sua supervisão a cada etapa.
+    \end{itemize}
+  \end{block}
+  \pause
+  \vfill
+  \begin{exampleblock}{}
+    \begin{itemize}
+      \item Use agentes para tarefas repetitivas de várias etapas.
+      \item Para uma pergunta única e pontual, o chat comum ainda é mais rápido.
+      \item A regra de ouro continua valendo: revise o resultado, nunca terceirize o juízo final.
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Duas filosofias de agente de código}
+  \small
+  \begin{columns}[t]
+    \column{0.5\textwidth}
+    \textbf{\color{azulUNI}Agent-first (Claude Code, Codex)}
+    \begin{itemize}
+      \item Você descreve o objetivo, o agente conduz.
+      \item Roda no terminal, sem interface gráfica.
+      \item Melhor para tarefas longas, com supervisão ao final.
+    \end{itemize}
+    \column{0.5\textwidth}
+    \textbf{\color{azulUNI}IDE-first (Cursor)}
+    \begin{itemize}
+      \item Você conduz, a IA sugere e completa.
+      \item Editor completo, revisão linha a linha.
+      \item Melhor para quem quer aprovar cada mudança.
+    \end{itemize}
+  \end{columns}
+  \pause
+  \vfill
+  \begin{block}{}
+    \centering As duas categorias convergem rápido: em 2026, praticamente todas já oferecem modo agente, CLI e \textit{handoff} em nuvem. O critério de escolha é \textbf{quanto controle passo a passo você quer manter}.
+  \end{block}
+\end{frame}
+
+\begin{frame}{\textit{Skills}, ensine a IA a repetir o seu fluxo}
+  \small
+  \begin{block}{O que é}
+    \begin{itemize}
+      \item Uma pasta com instruções, roteiros e, às vezes, pequenos scripts que a IA consulta.
+      \item Executa uma tarefa recorrente sempre da mesma forma: formatar referências em ABNT, seguir o checklist de uma revisão sistemática, aplicar o seu estilo de escrita.
+    \end{itemize}
+  \end{block}
+  \pause
+  \vfill
+  \begin{itemize}
+    \item A plataforma carrega só um resumo de cada \textit{Skill} instalada, e abre as instruções completas quando a tarefa realmente precisa.
+    \item Aciona-se digitando uma barra e o nome no início do prompt, por exemplo \texttt{/revisao-abnt}.
+    \pause
+    \item \alert{Regra prática}, se você está colando o mesmo prompt longo em conversas diferentes, esse é o sinal de transformá-lo numa \textit{Skill}.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{A plataforma Claude, além do chat}
+  \small
+  \begin{description}
+    \item[Projects] instruções e arquivos persistentes, para guardar suas preferências (``sempre em português acadêmico, ABNT, nunca invente referências'') sem repetir a cada conversa.
+    \item[Artifacts] documentos, tabelas, slides e protótipos gerados e editáveis dentro da própria conversa, sem sair dela.
+    \item[API] uso programático, para quem integra Claude a scripts e pipelines próprios (R, Python).
+  \end{description}
+  \pause
+  \vfill
+  \centering\small \textit{Skills} e agentes, vistos nos slides anteriores, também fazem parte dessa plataforma.
+\end{frame}
+
+\begin{frame}{Novidade, a marca d'água invisível}
+  \small
+  \begin{block}{O que é}
+    Modelos Claude lançados a partir de 2 de agosto de 2026 embutem uma marca estatística imperceptível em todo texto gerado; imagens em SVG, PNG e JPG recebem metadados C2PA assinados. Resposta ao Artigo 50 do AI Act europeu.
+  \end{block}
+  \pause
+  \vspace{0.1cm}
+  \begin{alertblock}{O limite que importa}
+    A marca \textbf{não prova autoria}. Um texto escrito por você e só revisado pela IA pode carregá-la. A \textbf{ausência} da marca também não prova o contrário, já que edição extensa e paráfrase reduzem a detecção.
+  \end{alertblock}
+  \pause
+  \centering Detecção técnica não substitui declaração honesta. A regra ``declare todo uso'' continua sendo sua, não da ferramenta.
+\end{frame}
+
+\begin{frame}{Como pensar sobre isso}
+  \begin{alertblock}{O alerta}
+    ``Porque dá para automatizar'' não significa ``deve-se automatizar''. Em pesquisa, cada camada de automação é uma camada a mais onde o erro passa despercebido.
+  \end{alertblock}
+  \pause
+  \vfill
+  \begin{itemize}
+    \item Domine primeiro o básico, \textbf{o prompt}. É o que dá 80\% do resultado.
+    \item Automação faz sentido quando você já sabe exatamente o que quer e sabe conferir.
+    \pause
+    \item \textbf{Onde aprender}, documentação oficial das ferramentas, Anthropic Academy, tutoriais em vídeo. O kit final tem os links.
+  \end{itemize}
+\end{frame}
+
+% ---------------- M10 ----------------
+\subsection{M10. Síntese e encerramento}
+\transicao{Módulo 10}{Síntese e encerramento}
+
+\begin{frame}{O que vocês levam do Dia 2}
+  \footnotesize
+  \begin{enumerate}
+    \item \textbf{A anatomia do prompt} e como diagnosticar por que uma resposta veio ruim (M5).
+    \item \textbf{Modelos} para aula, avaliação e apresentação, e o teste da defesa oral (M6).
+    \item \textbf{As linhagens da pesquisa}, qual IA usar em cada etapa e o esforço certo do modelo (M7).
+    \item \textbf{Modelos} para revisão, tradução, resposta a parecerista, e sua declaração de uso (M8).
+    \item \textbf{Agentes, \textit{skills} e assistentes de código}, o que já existe e por que exigem supervisão redobrada (M9).
+    \item \textbf{Os checklists e as três regras}, para consultar sempre que a dúvida voltar.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{Sua declaração de uso, retomando}
+  \begin{block}{}
+    \centering Vimos no Módulo 8 dois modelos prontos, curto (Sampaio, Sabbatini e Limongi, 2024) e detalhado (padrão AJPS).
+  \end{block}
+  \pause
+  \vfill
+  \begin{itemize}
+    \item Se você já escreveu a sua no Hands-on 5, guarde-a junto ao trabalho em andamento.
+    \item Se ainda não escreveu, é o primeiro item do checklist a seguir.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Checklist geral, antes de usar IA em qualquer tarefa}
+  \small
+  \begin{itemize}
+    \item[$\square$] Este texto tem entrevista, dado de campo ou material sob sigilo? Se sim, não cola sem anonimizar.
+    \item[$\square$] Pedi para a IA não inventar referências e para dizer quando não sabe?
+    \item[$\square$] Vou verificar cada referência e cada dado numa fonte primária antes de usar?
+    \item[$\square$] Vou revisar tudo com o teste da defesa oral: consigo defender cada parágrafo?
+    \item[$\square$] Escolhi o esforço do modelo, baixo, médio ou alto, de acordo com o tamanho da tarefa?
+    \item[$\square$] Se essa tarefa se repete toda semana, já vale a pena transformá-la numa \textit{Skill}?
+    \item[$\square$] Este uso precisa ser declarado, segundo a norma da minha instituição ou do periódico?
+    \item[$\square$] Registrei ferramenta, versão, data e o prompt usado, para replicabilidade?
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Checklists por perfil}
+  \scriptsize
+  \begin{columns}[t]
+    \column{0.5\textwidth}
+    \textbf{\color{verdeCodigo}Para estudantes, antes de entregar}
+    \begin{itemize}
+      \item[$\square$] Usei IA só nas etapas aceitas pela escala de cuidado (M4), não na geração de conteúdo substantivo?
+      \item[$\square$] Anonimizei entrevistas e dados de campo antes de colar em qualquer chat?
+      \item[$\square$] Conferi cada citação na fonte original?
+      \item[$\square$] Incluí a declaração de uso no formato exigido?
+      \item[$\square$] Consigo defender oralmente cada escolha e cada parágrafo?
+    \end{itemize}
+    \column{0.5\textwidth}
+    \textbf{\color{laranjaDestaque}Para professores, antes de usar em sala}
+    \begin{itemize}
+      \item[$\square$] Verifiquei conceitos, dados e exemplos contra alucinação?
+      \item[$\square$] Deixei claro para a turma o que é aceito, aceito com cuidado ou vedado?
+      \item[$\square$] Testei se as questões geradas têm resposta única e defensável?
+      \item[$\square$] Evitei gerar parecer substantivo sobre um trabalho sem revisão integral minha?
+      \item[$\square$] Atualizei minha declaração de uso no plano de ensino?
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Recursos para continuar}
+  \small
+  \begin{itemize}
+    \item \textbf{Kit de Sobrevivência do Cientista Social com IA}, o guia de bolso deste curso: os 16 modelos de prompt completos, checklists por perfil e bibliografia comentada por trilha de estudo.
+    \item \textbf{Repositório de normativas institucionais}, IEA/USP, \textit{Understanding AI}, com dezenas de guias de universidades brasileiras e estrangeiras, para achar a regra da sua própria instituição.\\
+    \scriptsize\url{understandingai.iea.usp.br/guidelines-para-o-uso-da-ia-no-ensino}
+    \item \small\textbf{Guia completo} de Sampaio, Sabbatini e Limongi (2024), Intercom.
+    \item \textbf{AJPS AI Policy} como modelo de política de periódico na nossa área.
+    \item \textbf{Anthropic Academy} e documentação oficial, para quem quiser ir além do Módulo 9.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Referências novas do Dia 2}
+  \tiny
+  \begin{itemize}
+    \item CHEN, X. et al. Do not think that much for 2+3=? On the overthinking of o1-like LLMs. \textit{Transactions on Machine Learning Research}, 2025. Preprint: arXiv:2412.21187.
+    \item SHOJAEE, P. et al. The illusion of thinking: understanding the strengths and limitations of reasoning models via the lens of problem complexity. Apple Machine Learning Research, 2025.
+    \item ANTHROPIC. Skills explained: how Skills compares to prompts, Projects, MCP, and subagents. Disponível em: \url{https://claude.com/blog/skills-explained}. Acesso em: 13 ago. 2026.
+    \item ANTHROPIC. Introduction to agentic coding; Claude Code overview e caso Rakuten. Disponíveis em: \url{https://claude.com/blog/introduction-to-agentic-coding} e \url{https://code.claude.com/docs/en/overview}. Acesso em: 13 ago. 2026. \alert{[relato institucional, não revisado por pares]}
+    \item Comparativos de mercado sobre Claude Code, Cursor, Codex, Gemini CLI/Antigravity e sobre Gamma para apresentações (2026). \alert{[fontes jornalísticas e de mercado, sujeitas a mudança rápida; não peer-reviewed]}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{As três regras}
+  \vfill
+  \begin{alertblock}{}
+    \centering\Large
+    Verificar toda referência\\[0.3cm]
+    Declarar todo uso\\[0.3cm]
+    Nunca terceirizar o juízo
+  \end{alertblock}
+  \pause
+  \vfill
+  \begin{block}{}
+    \centering Se você esquecer todo o resto, estas três resolvem quase tudo.
+  \end{block}
+\end{frame}
+
+\begin{frame}{Fechamento}
+  \begin{block}{}
+    \centering\large
+    A IA é uma ferramenta útil e legítima, \textbf{quando usada com critério}.
+  \end{block}
+  \vfill
+  \begin{itemize}
+    \item Voltando à pergunta do Módulo 2, ela muda o \textit{como}. O \textit{quê} continua sendo nosso.
+    \item A pergunta, o argumento, a interpretação e a responsabilidade não são delegáveis.
+  \end{itemize}
+  \vfill
+  \centering\small\textit{Dúvidas, agora ou depois, estou à disposição.}
+\end{frame}
+
+\begin{frame}{Nota de transparência sobre este material}
+  \begin{block}{Declaração de uso de IA}
+    \small Este material foi produzido com apoio do \textbf{Claude (Anthropic), modelo Sonnet 5}, usado para estruturar o curso, redigir e revisar os slides, e verificar referências e normas citadas (agosto de 2026).
+  \end{block}
+  \pause
+  \vfill
+  \begin{itemize}
+    \item Todo o conteúdo foi revisado, validado e editado pelo autor.
+    \item O autor assume integral responsabilidade pelo conteúdo final.
+  \end{itemize}
+  \pause
+  \vfill
+  \centering\small\textit{A mesma regra que este curso ensina, aplicada aqui.}
+\end{frame}
+
+\begin{frame}[plain]
+  \centering
+  \vspace*{1cm}
+  {\Huge\color{azulUNI}\textbf{Obrigado!}}\\[1.2cm]
+  {\Large\textbf{Anderson Henrique}}\\[0.4cm]
+  \small CEM/USP $\bullet$ INCT QualiGov\\
+  \small Pesquisador Convidado IPEA\\
+  \small Doutor em Ciência Política pela UFPE\\[1cm]
+  \normalsize
+  \begin{tabular}{rl}
+    \textbf{E-mail} & andersonheri@gmail.com \\
+                     & anderson.henrique@usp.br \\
+    \textbf{Lattes} & \href{http://lattes.cnpq.br/7628365040600511}{lattes.cnpq.br/7628365040600511} \\
+    \textbf{ORCID}  & 0000-0002-1842-2725 \\
+  \end{tabular}
+\end{frame}
+
+\end{document}

@@ -1,0 +1,25 @@
+# --- LaTeX build artifacts ---
+*.aux
+*.log
+*.out
+*.toc
+*.nav
+*.snm
+*.vrb
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+*.xdv
+*.dvi
+
+# Scratch build folder used while compiling locally
+_build/
+
+# --- Editor / OS clutter ---
+.DS_Store
+Thumbs.db
+.Rhistory
