@@ -16,8 +16,9 @@
 *.xdv
 *.dvi
 
-# Scratch build folder used while compiling locally
+# Scratch build folders used while compiling locally
 _build/
+_check/
 
 # --- Editor / OS clutter ---
 .DS_Store

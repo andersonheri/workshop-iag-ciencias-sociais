@@ -13,7 +13,8 @@ Material didático do mini curso do **CEM/USP** (Centro de Estudos da Metrópole
 ```
 ├── slides/     Slides do mini curso (Beamer, 2 dias)
 │   ├── workshop-iag-ciencias-sociais.tex
-│   └── workshop-iag-ciencias-sociais.pdf
+│   ├── workshop-iag-ciencias-sociais.pdf
+│   └── assets/           (logo do CEM usada na capa)
 ├── handout/    Guia de bolso complementar às aulas
 │   ├── kit_sobrevivencia.tex
 │   ├── kit-sobrevivencia-cientista-social-ia.pdf
