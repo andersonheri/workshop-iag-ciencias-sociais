@@ -15,12 +15,10 @@ Material didático do mini curso do **CEM/USP** (Centro de Estudos da Metrópole
 │   ├── workshop-iag-ciencias-sociais.tex
 │   ├── workshop-iag-ciencias-sociais.pdf
 │   └── assets/           (logo do CEM usada na capa)
-├── handout/    Guia de bolso complementar às aulas
-│   ├── kit_sobrevivencia.tex
-│   ├── kit-sobrevivencia-cientista-social-ia.pdf
-│   └── assets/           (logo e marca do CEM usados no guia)
 └── .gitignore
 ```
+
+> O guia de bolso ("Kit de Sobrevivência do Cientista Social com IA") foi retirado temporariamente do repositório para ajustes e volta assim que a revisão for concluída.
 
 ### Slides — `slides/workshop-iag-ciencias-sociais.tex`
 
@@ -31,38 +29,21 @@ Apresentação em Beamer com a estrutura do curso:
 
 Compila com **pdflatex** (tema Madrid, cores institucionais do CEM, sem dependência de fontes externas).
 
-### Guia de bolso — `handout/kit_sobrevivencia.tex`
-
-Manual prático complementar às aulas — "Kit de Sobrevivência do Cientista Social com IA" — pensado para consulta rápida no momento de uso: glossário, quando usar cada ferramenta, modelos de prompt prontos e modelo de declaração de uso de IA para manuscritos.
-
-Compila com **xelatex** e usa a fonte **Poppins** (Google Fonts, licença OFL) para os títulos.
-
-> **Uso e licença do conteúdo:** material de uso educacional. Reprodução e compartilhamento livres para fins não comerciais, desde que citada a fonte.
->
-> **Como citar:** HENRIQUE, Anderson. *Kit de sobrevivência do cientista social com IA*: manual prático. São Paulo: Centro de Estudos da Metrópole (CEM/USP), 2026.
-
 ## Como compilar
 
-Pré-requisitos: uma distribuição LaTeX (ex. [MiKTeX](https://miktex.org/) ou TeX Live) com `xelatex` e `pdflatex` disponíveis no PATH.
-
-O guia de bolso (`handout/kit_sobrevivencia.tex`) usa a fonte **Poppins**, que não vem pré-instalada no sistema. Baixe a família em [Google Fonts](https://fonts.google.com/specimen/Poppins) e instale-a antes de compilar (sem isso, o `fontspec` falha ao localizar a fonte).
+Pré-requisitos: uma distribuição LaTeX (ex. [MiKTeX](https://miktex.org/) ou TeX Live) com `pdflatex` disponível no PATH.
 
 ```bash
 # Slides (Dia 1 e Dia 2)
 cd slides
 pdflatex -interaction=nonstopmode workshop-iag-ciencias-sociais.tex
 pdflatex -interaction=nonstopmode workshop-iag-ciencias-sociais.tex   # 2ª rodada, acerta sumário/links
-
-# Guia de bolso
-cd ../handout
-xelatex -interaction=nonstopmode kit_sobrevivencia.tex
-xelatex -interaction=nonstopmode kit_sobrevivencia.tex   # 2ª rodada, acerta sumário/links
 ```
 
-Os PDFs compilados já estão versionados neste repositório para consulta direta, sem necessidade de compilar localmente.
+O PDF compilado já está versionado neste repositório para consulta direta, sem necessidade de compilar localmente.
 
 ## Declaração de uso de IA
 
-Coerente com o que o próprio [guia de bolso](handout/kit_sobrevivencia.tex) recomenda ("Sua declaração de uso, pronta"), registramos aqui o uso de IA na preparação *deste repositório* (não do conteúdo pedagógico em si, de autoria integral do autor):
+Registramos aqui o uso de IA na preparação *deste repositório* (não do conteúdo pedagógico em si, de autoria integral do autor):
 
 > Este repositório foi organizado com apoio do Claude (Anthropic), via Claude Code, em agosto de 2026, sob supervisão direta do autor. Uso que apoiou tarefas operacionais: instalação e configuração do ambiente de compilação LaTeX (MiKTeX, fonte Poppins) e do GitHub CLI; compilação e verificação de que os documentos `.tex` geram PDF sem erros; reestruturação dos arquivos em `slides/` e `handout/`; redação deste README; criação do repositório e push inicial no GitHub. O conteúdo intelectual dos slides e do guia de bolso não foi gerado por IA. Todas as saídas foram revisadas e aprovadas pelo autor, que se responsabiliza integralmente pelo conteúdo final.

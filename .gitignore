@@ -24,3 +24,6 @@ _check/
 .DS_Store
 Thumbs.db
 .Rhistory
+
+# Handout em revisao pelo autor, fora do repositorio por ora
+handout/
