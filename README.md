@@ -29,6 +29,10 @@ Apresentação em Beamer com a estrutura do curso:
 
 Compila com **pdflatex** (tema Madrid, cores institucionais do CEM, sem dependência de fontes externas).
 
+## Material complementar
+
+- **Vídeo:** ["A curiosa linha do tempo da evolução da Inteligência Artificial"](https://youtu.be/SkX6MKU9gAQ), BBC Brasil (YouTube). Linkado aqui, e não hospedado no repositório, por ser conteúdo de terceiros protegido por direitos autorais.
+
 ## Como compilar
 
 Pré-requisitos: uma distribuição LaTeX (ex. [MiKTeX](https://miktex.org/) ou TeX Live) com `pdflatex` disponível no PATH.

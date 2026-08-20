@@ -27,3 +27,6 @@ Thumbs.db
 
 # Handout em revisao pelo autor, fora do repositorio por ora
 handout/
+
+# Videos de terceiros (direitos autorais) - referenciados por link no README
+*.mp4
