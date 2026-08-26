@@ -17,16 +17,14 @@
 *.dvi
 
 # Scratch build folders used while compiling locally
-_build/
-_check/
+_build*/
+_check*/
 
 # --- Editor / OS clutter ---
 .DS_Store
 Thumbs.db
 .Rhistory
-
-# Handout em revisao pelo autor, fora do repositorio por ora
-handout/
+*.bak
 
 # Videos de terceiros (direitos autorais) - referenciados por link no README
 *.mp4

@@ -834,7 +834,7 @@ exemplo curto, um tom de referência, um contraexemplo].
 [Formato] [Estrutura, extensão e forma de entrega: tópicos,
 tabela, número de palavras, com ou sem referências].
 \end{lstlisting}
-\centering\small Copie, preencha os colchetes e ajuste. É o modelo 00 do kit de sobrevivência.
+\centering\small Copie, preencha os colchetes e ajuste. É o Modelo 00 do Manual de Sobrevivência.
 \end{frame}
 
 \begin{frame}{Duas instruções que evitam retrabalho}
@@ -941,18 +941,18 @@ Formato: tabela com a estrutura, seguida da descrição.
 \centering\small\alert{Note a instrução negativa. Ela elimina o maior risco.}
 \end{frame}
 
-\begin{frame}[fragile]{Modelo de prompt para questões de avaliação}
-\begin{lstlisting}
-Você é professor(a) de [disciplina/nível]. Elabore 5 questões
-sobre [TEMA]: 2 dissertativas, 2 de múltipla escolha com 4
-alternativas plausíveis, 1 de análise de caso curto.
-
-Para cada questão, indique: o objetivo de aprendizagem segundo a
-taxonomia de Bloom, o tempo estimado de resposta e um gabarito
-comentado. Não invente dados estatísticos ou fatos nos
-enunciados: use apenas conceitos e categorias da literatura.
-\end{lstlisting}
-\centering\small Peça também uma tabela de especificação (questão x objetivo x peso sugerido).
+\begin{frame}{O mesmo padrão para questões de avaliação}
+  \begin{block}{Adapte a mesma estrutura}
+    \small Papel $\rightarrow$ tarefa $\rightarrow$ contexto $\rightarrow$ formato, agora para gerar 5 questões (2 dissertativas, 2 de múltipla escolha, 1 de caso curto).
+  \end{block}
+  \vfill
+  \begin{itemize}
+    \item Cada questão com objetivo de aprendizagem (Bloom), tempo estimado e gabarito comentado.
+    \item \alert{A mesma instrução negativa}: não invente dado ou fato, use só conceitos da literatura.
+    \item Peça também uma tabela de especificação (questão $\times$ objetivo $\times$ peso).
+  \end{itemize}
+  \vfill
+  \centering\scriptsize Modelo completo, pronto para copiar, no Manual de Sobrevivência.
 \end{frame}
 
 \begin{frame}{Apresentações com IA}
@@ -1072,39 +1072,67 @@ dividir em mais de um.
   \end{exampleblock}
 \end{frame}
 
-\begin{frame}{Simples ou complexo? O esforço certo do modelo}
+\begin{frame}{Escolha e teste a ferramenta certa (Hands-on 3)}
+  \begin{block}{Escolha uma tarefa real de pesquisa sua}
+    Buscar literatura sobre um tema, ler um PDF longo ou mapear as citações de um trabalho central.
+  \end{block}
+  \vfill
+  \begin{enumerate}
+    \item Na tabela anterior, escolha a ferramenta pela \textbf{tarefa}, não pela que você já conhece.
+    \item Rode a busca ou o resumo e confira se cada afirmação vem com fonte rastreável.
+    \item A ferramenta não citou a fonte? Desconfie: é sinal de Linhagem 2 sem ancoragem.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{O esforço certo do modelo}
   \small
   \begin{itemize}
-    \item A maioria dos provedores oferece níveis de esforço: modelos rápidos para tarefas simples, modelos de raciocínio estendido para tarefas com várias etapas.
-    \item O nível certo não é só questão de custo.
+    \item A maioria dos provedores oferece níveis de esforço: rápido para tarefas simples, raciocínio estendido para tarefas com várias etapas.
+    \item Mais ``pensamento'' nem sempre é melhor: gasta tokens sem ganhar acurácia (\textit{overthinking}, Chen et al., 2025).
+    \item Além de um certo limiar, o mesmo tipo de modelo tende a \textbf{piorar} (Shojaee et al., 2025).
   \end{itemize}
   \pause
   \vfill
-  \begin{alertblock}{Mais ``pensamento'' não é sempre melhor}
-    \begin{itemize}
-      \item Raciocínio estendido pode gastar centenas de tokens numa conta trivial sem ganho de acurácia, o \textit{overthinking} (Chen et al., 2025).
-      \item Além de certo limiar de complexidade, o mesmo tipo de modelo tende a \textbf{piorar}, não melhorar (Shojaee et al., 2025, Apple Machine Learning Research).
-    \end{itemize}
-  \end{alertblock}
-\end{frame}
-
-\begin{frame}{Esforço baixo, médio e alto, na prática}
   \scriptsize
-  \renewcommand{\arraystretch}{1.3}
-  \begin{tabular}{p{4.1cm} p{4.1cm} p{4.1cm}}
+  \renewcommand{\arraystretch}{1.2}
+  \begin{tabular}{p{4.0cm} p{4.0cm} p{4.0cm}}
     \toprule
     \textbf{Baixo esforço} & \textbf{Médio esforço} & \textbf{Alto esforço} \\
     \midrule
-    Revisão ortográfica e gramatical & Fichamento padrão de um texto & Desenho da metodologia de uma pesquisa \\
-    Traduzir um parágrafo curto & Formatar referências em ABNT & Sintetizar e comparar vários artigos \\
-    Responder uma pergunta factual simples & Rascunho de e-mail formal & Depurar um script com erro não óbvio \\
+    Revisão ortográfica; traduzir parágrafo curto; pergunta factual simples
+    & Fichamento padrão; formatar ABNT; rascunho de e-mail formal
+    & Desenho metodológico; síntese comparativa; depurar erro não óbvio \\
     \bottomrule
   \end{tabular}
   \pause
   \vfill
-  \begin{block}{Critério prático}
-    \centering Resposta objetiva e fácil de checar? Baixo esforço resolve. Exige ponderar \textit{trade-offs} ou encadear várias etapas? Vale o modelo mais avançado.
-  \end{block}
+  \centering\small Resposta objetiva e fácil de checar? Baixo esforço resolve.
+  Exige ponderar \textit{trade-offs} ou encadear etapas? Vale o modelo avançado.
+\end{frame}
+
+\begin{frame}{Ferramentas, tokens e custo: qual usar em cada situação}
+  \scriptsize
+  \renewcommand{\arraystretch}{1.15}
+  \begin{tabular}{p{2.6cm} p{3.5cm} p{3.6cm} p{3.7cm}}
+    \toprule
+    \textbf{Critério} & \textbf{Chat (claude.ai)} & \textbf{Cowork} & \textbf{Claude Code} \\
+    \midrule
+    Arquivos locais & Só upload manual & Acessa uma pasta local & Acesso total ao ambiente \\
+    Duração da tarefa & Uma conversa & Várias etapas, tarefa longa & Horas, de forma autônoma \\
+    Perfil de uso & Qualquer pesquisador & Quem não programa & Quem programa (R, Python) \\
+    Consumo de tokens & Por mensagem & Por tarefa, incluso na assinatura & Por ação, cobrado à parte na API \\
+    \bottomrule
+  \end{tabular}
+  \pause
+  \vfill
+  \begin{exampleblock}{Se você usa ChatGPT em vez do Claude}
+    \small O \textbf{Work} ocupa o lugar do Cowork; o \textbf{Codex} ocupa o
+    lugar do Claude Code. O critério de escolha desta tabela vale para as
+    duas plataformas.
+  \end{exampleblock}
+  \pause
+  \centering\small Dúvida pontual? Chat. Pasta inteira para organizar?
+  Cowork. Pipeline de dados de ponta a ponta? Claude Code.
 \end{frame}
 
 \begin{frame}[fragile]{Modelo de prompt, organizar meu desenho de pesquisa}
@@ -1168,7 +1196,7 @@ strings nas bases e colo os resultados de volta.
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Fichamento comparativo (Hands-on 3)}
+\begin{frame}{Fichamento comparativo (Hands-on 4)}
   \begin{exampleblock}{Cole ou anexe dois textos curtos sobre o mesmo tema}
     \small
     \textit{``Produza um fichamento comparativo dos dois textos abaixo:\\
@@ -1234,6 +1262,9 @@ strings nas bases e colo os resultados de volta.
 
 \begin{frame}[fragile]{Modelo de prompt, revisão de parágrafo mantendo a voz autoral}
 \begin{lstlisting}
+Você é um revisor de estilo acadêmico, treinado a preservar a
+voz e as escolhas teóricas do autor.
+
 Sugira melhorias de clareza, coesão e precisão neste parágrafo,
 MANTENDO minha voz e meu argumento. Não reescreva do zero.
 
@@ -1248,7 +1279,7 @@ mais formal, mais direta), para eu escolher ou combinar.
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}{Melhore um parágrafo seu (Hands-on 4)}
+\begin{frame}{Melhore um parágrafo seu (Hands-on 5)}
   \begin{exampleblock}{Cole um parágrafo real de um texto seu e use o modelo anterior}
     \small Repare na diferença entre \textbf{melhorar} e \textbf{substituir}.
   \end{exampleblock}
@@ -1261,6 +1292,9 @@ mais formal, mais direta), para eu escolher ou combinar.
 
 \begin{frame}[fragile]{Modelo de prompt, tradução de \textit{abstract} (PT para EN)}
 \begin{lstlisting}
+Você é um tradutor acadêmico, especializado em inglês
+científico para a área de [área].
+
 Traduza o abstract abaixo para inglês acadêmico (US English),
 para submissão em periódico de [área]. Preserve a terminologia
 técnica e o hedging proporcional à evidência (não fortaleça nem
@@ -1275,6 +1309,9 @@ considerando o limite de [N] do periódico.
 
 \begin{frame}[fragile]{Modelo de prompt, resposta estruturada a parecerista}
 \begin{lstlisting}
+Você é um assistente editorial, especializado em organizar
+respostas a pareceristas de forma clara e diplomática.
+
 Organize minha resposta ao comentário abaixo em: (1) comentário,
 transcrito; (2) minha resposta, objetiva e respeitosa; (3)
 alteração realizada no manuscrito; (4) localização (página/seção).
@@ -1284,7 +1321,7 @@ redação) e por prioridade. Não amenize nem exagere minha
 concordância: mantenha o tom que eu indicar. Não invente
 justificativa metodológica que eu não tenha fornecido.
 \end{lstlisting}
-\centering\small O kit de sobrevivência traz mais três modelos deste eixo: projeto para agência de fomento, carta de motivação (BEPE/PDSE) e parecer \textit{ad hoc} como revisor.
+\centering\small O Manual de Sobrevivência traz mais três modelos deste eixo: projeto para agência de fomento, carta de motivação (BEPE/PDSE) e parecer \textit{ad hoc} como revisor.
 \end{frame}
 
 \begin{frame}{Sua declaração de uso, modelo curto}
@@ -1308,7 +1345,7 @@ justificativa metodológica que eu não tenha fornecido.
   \centering\small Distinga usos que moldaram diretamente a pesquisa dos que só apoiaram a redação. Correção ortográfica pontual não precisa de declaração; qualquer uso que toque dado ou análise, sim. Na dúvida, declare.
 \end{frame}
 
-\begin{frame}{Escreva sua declaração de uso (Hands-on 5)}
+\begin{frame}{Escreva sua declaração de uso (Hands-on 6)}
   \begin{block}{}
     \centering Escolha um trabalho real que você tem em andamento e escreva agora a sua declaração, usando um dos dois modelos.
   \end{block}
@@ -1396,6 +1433,18 @@ justificativa metodológica que eu não tenha fornecido.
   \end{block}
 \end{frame}
 
+\begin{frame}{Rode uma tarefa curta com um agente (Hands-on 7)}
+  \begin{block}{Escolha uma tarefa pequena e bem definida}
+    Organizar os arquivos de uma pasta de projeto, gerar uma planilha a partir de dados brutos, ou pedir a um agente que gere e teste um trecho curto de código.
+  \end{block}
+  \vfill
+  \begin{enumerate}
+    \item Descreva o \textbf{objetivo final}, não o passo a passo. Deixe o agente planejar.
+    \item Acompanhe: ele parou para perguntar quando havia ambiguidade?
+    \item Ao final, avalie só o resultado. Você conseguiria explicar o que ele fez?
+  \end{enumerate}
+\end{frame}
+
 \begin{frame}{\textit{Skills}, ensine a IA a repetir o seu fluxo}
   \small
   \begin{block}{O que é}
@@ -1414,27 +1463,66 @@ justificativa metodológica que eu não tenha fornecido.
   \end{itemize}
 \end{frame}
 
-\begin{frame}{A plataforma Claude, além do chat}
+\begin{frame}{Configure suas instruções personalizadas}
   \small
-  \begin{description}
-    \item[Projects] instruções e arquivos persistentes, para guardar suas preferências (``sempre em português acadêmico, ABNT, nunca invente referências'') sem repetir a cada conversa.
-    \item[Artifacts] documentos, tabelas, slides e protótipos gerados e editáveis dentro da própria conversa, sem sair dela.
-    \item[API] uso programático, para quem integra Claude a scripts e pipelines próprios (R, Python).
-  \end{description}
+  \begin{block}{O que é}
+    Um texto fixo que vale em toda conversa nova, sem repetir a cada
+    prompt. No Claude: Configurações $\rightarrow$ Perfil
+    $\rightarrow$ ``Instruções personalizadas'' (vale para chat e Cowork).
+  \end{block}
   \pause
   \vfill
-  \centering\small \textit{Skills} e agentes, vistos nos slides anteriores, também fazem parte dessa plataforma.
+  \begin{itemize}
+    \item \textbf{Padrão persona} (White et al., 2023): um papel fixo muda o vocabulário, o nível de detalhe e o critério de julgamento da resposta.
+    \item \textbf{Contexto bem colocado} (Reynolds e McDonell, 2021): boa parte do que parece ``mágica'' no desempenho vem da instrução, não da tarefa isolada.
+  \end{itemize}
+  \pause
+  \vfill
+  \begin{alertblock}{}
+    \centering Instruções personalizadas aplicam esse princípio de forma
+    permanente, em vez de reescrevê-lo prompt a prompt.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{O que colocar nas suas instruções}
+  \small
+  \begin{itemize}
+    \item[$\square$] Quem sou eu, e para quem eu escrevo?
+    \item[$\square$] Que formato de resposta eu prefiro?
+    \item[$\square$] Que postura eu espero do assistente? (crítica, não
+    validação automática)
+    \item[$\square$] O que eu explicitamente não quero ver?
+  \end{itemize}
+  \pause
+  \vfill
+  \begin{exampleblock}{}
+    \small Escreva como uma orientação curta para um assistente novo:
+    direta, com exemplos do que é ou não aceitável.
+  \end{exampleblock}
+  \pause
+  \vfill
+  \begin{alertblock}{O que isso não faz}
+    \small\centering Não substitui o contexto de cada tarefa, nem tem
+    prioridade sobre instruções de \textit{Projects}.
+  \end{alertblock}
 \end{frame}
 
 \begin{frame}{Novidade, a marca d'água invisível}
   \small
   \begin{block}{O que é}
-    Modelos Claude lançados a partir de 2 de agosto de 2026 embutem uma marca estatística imperceptível em todo texto gerado; imagens em SVG, PNG e JPG recebem metadados C2PA assinados. Resposta ao Artigo 50 do AI Act europeu.
+    \begin{itemize}
+      \item Modelos Claude lançados a partir de 2 de agosto de 2026 embutem marca estatística imperceptível em todo texto gerado.
+      \item Imagens em SVG, PNG e JPG recebem metadados C2PA assinados.
+      \item Resposta ao Artigo 50 do AI Act europeu.
+    \end{itemize}
   \end{block}
   \pause
   \vspace{0.1cm}
   \begin{alertblock}{O limite que importa}
-    A marca \textbf{não prova autoria}. Um texto escrito por você e só revisado pela IA pode carregá-la. A \textbf{ausência} da marca também não prova o contrário, já que edição extensa e paráfrase reduzem a detecção.
+    \begin{itemize}
+      \item A marca \textbf{não prova autoria}: texto escrito por você e só revisado pela IA pode carregá-la.
+      \item A \textbf{ausência} da marca também não prova o contrário: edição extensa e paráfrase reduzem a detecção.
+    \end{itemize}
   \end{alertblock}
   \pause
   \centering Detecção técnica não substitui declaração honesta. A regra ``declare todo uso'' continua sendo sua, não da ferramenta.
@@ -1450,7 +1538,7 @@ justificativa metodológica que eu não tenha fornecido.
     \item Domine primeiro o básico, \textbf{o prompt}. É o que dá 80\% do resultado.
     \item Automação faz sentido quando você já sabe exatamente o que quer e sabe conferir.
     \pause
-    \item \textbf{Onde aprender}, documentação oficial das ferramentas, Anthropic Academy, tutoriais em vídeo. O kit final tem os links.
+    \item \textbf{Onde aprender}, documentação oficial das ferramentas, Anthropic Academy, tutoriais em vídeo. O Manual de Sobrevivência tem os links completos.
   \end{itemize}
 \end{frame}
 
@@ -1477,7 +1565,7 @@ justificativa metodológica que eu não tenha fornecido.
   \pause
   \vfill
   \begin{itemize}
-    \item Se você já escreveu a sua no Hands-on 5, guarde-a junto ao trabalho em andamento.
+    \item Se você já escreveu a sua no Hands-on 6, guarde-a junto ao trabalho em andamento.
     \item Se ainda não escreveu, é o primeiro item do checklist a seguir.
   \end{itemize}
 \end{frame}
@@ -1523,7 +1611,7 @@ justificativa metodológica que eu não tenha fornecido.
 \begin{frame}{Recursos para continuar}
   \small
   \begin{itemize}
-    \item \textbf{Kit de Sobrevivência do Cientista Social com IA}, o guia de bolso deste curso: os 16 modelos de prompt completos, checklists por perfil e bibliografia comentada por trilha de estudo.
+    \item \textbf{Manual de Sobrevivência do Cientista Social com IA}, o guia de bolso deste curso: os 29 modelos de prompt, organizados no ciclo Aprenda $\rightarrow$ Configure $\rightarrow$ Revise $\rightarrow$ Consolide, checklists por perfil e bibliografia comentada por trilha de estudo.
     \item \textbf{Repositório de normativas institucionais}, IEA/USP, \textit{Understanding AI}, com dezenas de guias de universidades brasileiras e estrangeiras, para achar a regra da sua própria instituição.\\
     \scriptsize\url{understandingai.iea.usp.br/guidelines-para-o-uso-da-ia-no-ensino}
     \item \small\textbf{Guia completo} de Sampaio, Sabbatini e Limongi (2024), Intercom.
@@ -1540,6 +1628,8 @@ justificativa metodológica que eu não tenha fornecido.
     \item ANTHROPIC. Skills explained: how Skills compares to prompts, Projects, MCP, and subagents. Disponível em: \url{https://claude.com/blog/skills-explained}. Acesso em: 13 ago. 2026.
     \item ANTHROPIC. Introduction to agentic coding; Claude Code overview e caso Rakuten. Disponíveis em: \url{https://claude.com/blog/introduction-to-agentic-coding} e \url{https://code.claude.com/docs/en/overview}. Acesso em: 13 ago. 2026. \alert{[relato institucional, não revisado por pares]}
     \item Comparativos de mercado sobre Claude Code, Cursor, Codex, Gemini CLI/Antigravity e sobre Gamma para apresentações (2026). \alert{[fontes jornalísticas e de mercado, sujeitas a mudança rápida; não peer-reviewed]}
+    \item WHITE, J. et al. A Prompt Pattern Catalog to Enhance Prompt Engineering with ChatGPT. Preprint: arXiv:2302.11382, 2023.
+    \item REYNOLDS, L.; McDONELL, K. Prompt Programming for Large Language Models: Beyond the Few-Shot Paradigm. In: Extended Abstracts of the 2021 CHI Conference on Human Factors in Computing Systems. New York: ACM, 2021. Art. 314. DOI: 10.1145/3411763.3451760.
   \end{itemize}
 \end{frame}
 
