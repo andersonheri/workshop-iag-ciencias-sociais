@@ -34,7 +34,7 @@ Compila com **pdflatex** (tema Madrid, cores institucionais do CEM, sem dependê
 
 ### Manual de Sobrevivência — `handout/manual_sobrevivencia.tex`
 
-"Manual de Sobrevivência do Cientista Social com IA": guia de bolso complementar às aulas, pensado para consulta rápida no momento de uso — glossário, quando usar cada ferramenta, ~29 modelos de prompt prontos e modelo de declaração de uso de IA para manuscritos.
+"Manual de Sobrevivência do Cientista Social com IA": guia de bolso complementar às aulas, pensado para consulta rápida no momento de uso — glossário, quando usar cada ferramenta, ~29 modelos de prompt prontos, modelo de declaração de uso de IA para manuscritos e um modelo de registro de decisões (histórico de prompts) para reconstituir o processo, não só declará-lo ao final.
 
 Compila com **xelatex** e usa a fonte **Poppins** (Google Fonts, licença OFL) para os títulos.
 

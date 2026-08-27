@@ -1356,6 +1356,33 @@ A AJPS pede uma declaração única e consolidada, geralmente em nota de rodapé
 \end{dica}
 
 % =====================================================================
+\section{Registre suas decisões: o histórico de prompts}
+% =====================================================================
+\small
+A declaração de uso de IA (seção anterior) resume o que foi feito ao final do trabalho. Mas se você, uma banca ou um parecerista precisar reconstituir exatamente o que foi pedido, a quem, quando, e o que foi feito com a resposta, a declaração sozinha não basta. Para isso serve um registro simples, mantido enquanto o trabalho acontece: um arquivo, em Word ou Markdown, com uma entrada por decisão relevante.
+
+\begin{leitura}[title={\iconBookmark{white}\ \ Modelo de entrada para o seu registro de decisões}]
+\itshape
+\textbf{Data e hora:} [AAAA-MM-DD, HH:MM]\\
+\textbf{Ferramenta e modelo:} [ex.: Claude Sonnet 4.5, Anthropic]\\
+\textbf{Tarefa:} [o que estava sendo feito, ex.: recodificação da variável de renda em quartis]\\
+\textbf{Prompt:} ver arquivo \texttt{prompts/AAAA-MM-DD\_prompt01.txt}\\
+\textbf{Decisão:} Aceito integralmente / Aceito com edição / Rejeitado\\
+\textbf{Justificativa:} [por que aceitou, editou ou rejeitou a saída]
+\end{leitura}
+
+\begin{dica}
+Guarde o prompt completo em um arquivo de texto próprio, um por interação relevante, em uma pasta \texttt{prompts/}, e apenas referencie o nome do arquivo no registro. Isso mantém o registro curto e legível e preserva o prompt original, sem parafraseá-lo, o que é essencial para replicação exata.
+\end{dica}
+
+\vspace{4pt}
+Não é necessário registrar cada mensagem trocada com a IA, isso tornaria o processo inviável. Registre apenas os pontos de decisão: qualquer momento em que a saída da IA influenciou dado, análise, código ou texto final. Correções ortográficas pontuais e perguntas de esclarecimento, em geral, não precisam de entrada própria.
+
+\begin{dica}
+Existe uma terceira via, mais forte, mas restrita a quem usa IA agêntica (Claude Code, Cowork, ou qualquer agente com acesso a arquivo, não o chat comum): nesse caso, a própria IA escreve a entrada num arquivo de log no disco, sem que você precise copiar e colar. É o que acontece, por exemplo, quando um agente registra decisões diretamente num arquivo do projeto à medida que o trabalho avança.
+\end{dica}
+
+% =====================================================================
 \section{Onde continuar}
 % =====================================================================
 \small
